@@ -2,7 +2,7 @@
 
 ***
 
-1. [Feature: OpenStudioLandscapes-Template](#feature-openstudiolandscapes-template)
+1. [Feature: OpenStudioLandscapes-RustDeskServer](#feature-openstudiolandscapes-rustdeskserver)
    1. [Brief](#brief)
    2. [Requirements](#requirements)
    3. [Install](#install)
@@ -14,6 +14,8 @@
    6. [Variables](#variables)
       1. [Feature Configs](#feature-configs)
 2. [Community](#community)
+3. [Official Resources](#official-resources)
+   1. [Rust Desk Server](#rust-desk-server)
 
 ***
 
@@ -27,7 +29,7 @@ This `README.md` was dynamically created with [OpenStudioLandscapesUtil-ReadmeGe
 
 This is an extension to the OpenStudioLandscapes ecosystem. The full documentation of OpenStudioLandscapes is available [here](https://github.com/michimussato/OpenStudioLandscapes).
 
-You feel like writing your own Feature? Go and check out the [OpenStudioLandscapes-RustDeskServer](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer).
+You feel like writing your own Feature? Go and check out the [OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template).
 
 ## Requirements
 
@@ -184,12 +186,25 @@ The following variables are being declared in `OpenStudioLandscapes.RustDeskServ
 
 #### Feature Config: default
 
-| Variable                 | Type   | Value                                                             |
-| :----------------------- | :----- | :---------------------------------------------------------------- |
-| `DOCKER_USE_CACHE`       | `bool` | `False`                                                           |
-| `ENV_VAR_PORT_HOST`      | `str`  | `1234`                                                            |
-| `ENV_VAR_PORT_CONTAINER` | `str`  | `4321`                                                            |
-| `EXTRA_FILE`             | `str`  | `{DOT_FEATURES}/OpenStudioLandscapes-n8n/.payload/bin/extra.file` |
+| Variable                                            | Type   | Value                                                              |
+| :-------------------------------------------------- | :----- | :----------------------------------------------------------------- |
+| `DOCKER_USE_CACHE`                                  | `bool` | `False`                                                            |
+| `HBBS_ALWAYS_USE_RELAY`                             | `str`  | `Y`                                                                |
+| `HBBS_WEB_CONSOLE_PORT_HOST`                        | `str`  | `21114`                                                            |
+| `HBBS_WEB_CONSOLE_PORT_CONTAINER`                   | `str`  | `21114/tcp`                                                        |
+| `HBBS_NAT_TYPE_TEST_PORT_HOST`                      | `str`  | `21115`                                                            |
+| `HBBS_NAT_TYPE_TEST_PORT_CONTAINER`                 | `str`  | `21115/tcp`                                                        |
+| `HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST`      | `str`  | `21116`                                                            |
+| `HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER` | `str`  | `21116/tcp`                                                        |
+| `HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST`      | `str`  | `21116`                                                            |
+| `HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER` | `str`  | `21116/udp`                                                        |
+| `HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST`                | `str`  | `21118`                                                            |
+| `HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER`           | `str`  | `21118/tcp`                                                        |
+| `HBBR_RELAY_SERVICES_PORT_HOST`                     | `str`  | `21117`                                                            |
+| `HBBR_RELAY_SERVICES_PORT_CONTAINER`                | `str`  | `21117/tcp`                                                        |
+| `HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER`           | `str`  | `21119`                                                            |
+| `HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST`                | `str`  | `21119/tcp`                                                        |
+| `DATA_STORE`                                        | `str`  | `{DOT_LANDSCAPES}/{LANDSCAPE}/RustDeskServer__RustDeskServer/data` |
 
 # Community
 
@@ -206,3 +221,15 @@ To follow up on the previous LinkedIn publications, visit:
 - [Search for tag #OpenStudioLandscapes on LinkedIn](https://www.linkedin.com/search/results/all/?keywords=%23openstudiolandscapes).
 
 ***
+
+# Official Resources
+
+[![ Logo Template ](https://rustdesk.com/_astro/logo.BKb61-he.svg)](https://rustdesk.com/)
+
+## Rust Desk Server
+
+Rust Desk Server Information:
+
+- [Documentation](https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/docker/)
+- [Network Chuck](https://www.youtube.com/watch?v=EXL8mMUXs88&ab_channel=NetworkChuck)
+- [Build Docker](https://github.com/rustdesk/rustdesk?tab=readme-ov-file#how-to-build-with-docker)

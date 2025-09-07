@@ -261,7 +261,7 @@ def compose_networks(
     Output[dict[str, dict[str, dict[str, str]]]] | AssetMaterialization, None, None
 ]:
 
-    compose_network_mode = ComposeNetworkMode.HOST
+    compose_network_mode = ComposeNetworkMode.DEFAULT
 
     if compose_network_mode == ComposeNetworkMode.DEFAULT:
         docker_dict = {
@@ -317,13 +317,24 @@ def compose_rustdeskserver(
     """ """
 
     network_dict = {}
-    ports_dict = {}
+    ports_dict_hbbs = {}
+    ports_dict_hbbr = {}
 
     if "networks" in compose_networks:
         network_dict = {"networks": list(compose_networks.get("networks", {}).keys())}
-        ports_dict = {
+        ports_dict_hbbs = {
             "ports": [
-                f"{env.get('ENV_VAR_PORT_HOST')}:{env.get('ENV_VAR_PORT_CONTAINER')}",
+                f"{env['HBBS_WEB_CONSOLE_PORT_HOST']}:{env['HBBS_WEB_CONSOLE_PORT_CONTAINER']}",
+                f"{env['HBBS_NAT_TYPE_TEST_PORT_HOST']}:{env['HBBS_NAT_TYPE_TEST_PORT_CONTAINER']}",
+                f"{env['HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST']}:{env['HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER']}",
+                f"{env['HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST']}:{env['HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER']}",
+                f"{env['HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST']}:{env['HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER']}",
+            ]
+        }
+        ports_dict_hbbr = {
+            "ports": [
+                f"{env['HBBR_RELAY_SERVICES_PORT_HOST']}:{env['HBBR_RELAY_SERVICES_PORT_CONTAINER']}",
+                f"{env['HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER']}:{env['HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST']}",
             ]
         }
     elif "network_mode" in compose_networks:
@@ -363,9 +374,6 @@ def compose_rustdeskserver(
         ],
     }
 
-    command_hbbs = ["hbbs"]
-    command_hbbr = ["hbbr"]
-
     service_name_hbbs = "hbbs"
     container_name_hbbs = "--".join([service_name_hbbs, env.get("LANDSCAPE", "default")])
     host_name_hbbs = ".".join([service_name_hbbs, env["ROOT_DOMAIN"]])
@@ -373,6 +381,13 @@ def compose_rustdeskserver(
     service_name_hbbr = "hbbr"
     container_name_hbbr = "--".join([service_name_hbbr, env.get("LANDSCAPE", "default")])
     host_name_hbbr = ".".join([service_name_hbbr, env["ROOT_DOMAIN"]])
+
+    command_hbbs = [
+        "hbbs",
+        "-r",
+        host_name_hbbr
+    ]
+    command_hbbr = ["hbbr"]
 
     # https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/docker/
     docker_dict = {
@@ -387,14 +402,16 @@ def compose_rustdeskserver(
                 "image": "rustdesk/rustdesk-server:latest",
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
-                **copy.deepcopy(ports_dict),
+                **copy.deepcopy(ports_dict_hbbs),
                 "environment": {
                     "ALWAYS_USE_RELAY": env["HBBS_ALWAYS_USE_RELAY"],
                 },
                 # "healthcheck": {
                 # },
                 "command": command_hbbs,
-                "depends_on": "hbbr",
+                "depends_on": [
+                    "hbbr",
+                ],
             },
             # hbbr
             service_name_hbbr: {
@@ -406,7 +423,7 @@ def compose_rustdeskserver(
                 "image": "rustdesk/rustdesk-server:latest",
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
-                **copy.deepcopy(ports_dict),
+                **copy.deepcopy(ports_dict_hbbr),
                 # "environment": {
                 # },
                 # "healthcheck": {

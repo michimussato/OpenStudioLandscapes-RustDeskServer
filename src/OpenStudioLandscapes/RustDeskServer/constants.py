@@ -39,13 +39,22 @@ FEATURE_CONFIGS = {
     OpenStudioLandscapesConfig.DEFAULT: {
         "DOCKER_USE_CACHE": DOCKER_USE_CACHE,
         "HBBS_ALWAYS_USE_RELAY": ["Y", "N"][0],
-        # "HBBS_WEB_CONSOLE_PORT_HOST": "21114/tcp",  # Only in Pro version
-        # "HBBS_NAT_TYPE_TEST_PORT_HOST": "21115/tcp",
-        # "HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST": "21116/tcp",
-        # "HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST": "21116/udp",
-        # "HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST": "21118/tcp",  # Can be disabled if web clients are not needed
-        # "HBBR_RELAY_SERVICES_PORT_HOST": "21117/tcp",
-        # "HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST": "21119/tcp",  # Can be disabled if web clients are not needed
+        # hbbs
+        "HBBS_WEB_CONSOLE_PORT_HOST": "21114",  # Only in Pro version
+        "HBBS_WEB_CONSOLE_PORT_CONTAINER": "21114/tcp",  # Only in Pro version
+        "HBBS_NAT_TYPE_TEST_PORT_HOST": "21115",
+        "HBBS_NAT_TYPE_TEST_PORT_CONTAINER": "21115/tcp",
+        "HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST": "21116",
+        "HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER": "21116/tcp",
+        "HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST": "21116",
+        "HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER": "21116/udp",
+        "HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST": "21118",  # Can be disabled if web clients are not needed
+        "HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER": "21118/tcp",  # Can be disabled if web clients are not needed
+        # hbbr
+        "HBBR_RELAY_SERVICES_PORT_HOST": "21117",
+        "HBBR_RELAY_SERVICES_PORT_CONTAINER": "21117/tcp",
+        "HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER": "21119",  # Can be disabled if web clients are not needed
+        "HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST": "21119/tcp",  # Can be disabled if web clients are not needed
         "DATA_STORE": pathlib.Path(
             "{DOT_LANDSCAPES}",
             "{LANDSCAPE}",
