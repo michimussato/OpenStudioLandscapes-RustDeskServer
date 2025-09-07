@@ -38,17 +38,33 @@ ASSET_HEADER = {
 FEATURE_CONFIGS = {
     OpenStudioLandscapesConfig.DEFAULT: {
         "DOCKER_USE_CACHE": DOCKER_USE_CACHE,
-        "ENV_VAR_PORT_HOST": "1234",
-        "ENV_VAR_PORT_CONTAINER": "4321",
-        f"EXTRA_FILE": pathlib.Path(
-            "{DOT_FEATURES}",
-            FEATURE,
-            ".payload",
-            "bin",
-            "extra.file",
+        "HBBS_ALWAYS_USE_RELAY": ["Y", "N"][0],
+        # "HBBS_WEB_CONSOLE_PORT_HOST": "21114/tcp",  # Only in Pro version
+        # "HBBS_NAT_TYPE_TEST_PORT_HOST": "21115/tcp",
+        # "HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST": "21116/tcp",
+        # "HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST": "21116/udp",
+        # "HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST": "21118/tcp",  # Can be disabled if web clients are not needed
+        # "HBBR_RELAY_SERVICES_PORT_HOST": "21117/tcp",
+        # "HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST": "21119/tcp",  # Can be disabled if web clients are not needed
+        "DATA_STORE": pathlib.Path(
+            "{DOT_LANDSCAPES}",
+            "{LANDSCAPE}",
+            f"{GROUP}__{'__'.join(KEY)}",
+            "data",
         )
         .expanduser()
         .as_posix(),
+        # "ENV_VAR_PORT_HOST": "1234",
+        # "ENV_VAR_PORT_CONTAINER": "4321",
+        # f"EXTRA_FILE": pathlib.Path(
+        #     "{DOT_FEATURES}",
+        #     FEATURE,
+        #     ".payload",
+        #     "bin",
+        #     "extra.file",
+        # )
+        # .expanduser()
+        # .as_posix(),
     }
 }
 # @formatter:on
