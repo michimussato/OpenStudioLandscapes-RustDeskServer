@@ -3,15 +3,15 @@ from dagster import (
     load_assets_from_modules,
 )
 
-import OpenStudioLandscapes.Template.assets
-import OpenStudioLandscapes.Template.constants
+import OpenStudioLandscapes.RustDeskServer.assets
+import OpenStudioLandscapes.RustDeskServer.constants
 
 assets = load_assets_from_modules(
-    modules=[OpenStudioLandscapes.Template.assets],
+    modules=[OpenStudioLandscapes.RustDeskServer.assets],
 )
 
 constants = load_assets_from_modules(
-    modules=[OpenStudioLandscapes.Template.constants],
+    modules=[OpenStudioLandscapes.RustDeskServer.constants],
 )
 
 
