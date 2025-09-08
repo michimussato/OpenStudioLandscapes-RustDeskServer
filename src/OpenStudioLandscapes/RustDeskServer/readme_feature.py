@@ -83,7 +83,7 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
     doc.add_paragraph(
         text=textwrap.dedent(
             """\
-            When you run RustDesk Client (aka RustDesk Desktop), you'll 
+            When you run RustDesk Client (aka RustDesk Desktop), you'll
             be presented with a screen similar to this one:
             """
         )
@@ -136,7 +136,7 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
         text=textwrap.dedent(
             """\
             `ID server` and `Relay server` specify the host name or IP address
-            the RustDesk Server is running on (this could be `localhost` in 
+            the RustDesk Server is running on (this could be `localhost` in
             case the Landscape with OpenStudioLandscapes-RustDeskServer
             Feature is running on your local machine).
             """
@@ -238,8 +238,6 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
             """
         )
     )
-
-
 
     # doc.add_horizontal_rule()
 

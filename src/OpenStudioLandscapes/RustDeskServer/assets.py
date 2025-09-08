@@ -375,18 +375,18 @@ def compose_rustdeskserver(
     }
 
     service_name_hbbs = "hbbs"
-    container_name_hbbs = "--".join([service_name_hbbs, env.get("LANDSCAPE", "default")])
+    container_name_hbbs = "--".join(
+        [service_name_hbbs, env.get("LANDSCAPE", "default")]
+    )
     host_name_hbbs = ".".join([service_name_hbbs, env["ROOT_DOMAIN"]])
 
     service_name_hbbr = "hbbr"
-    container_name_hbbr = "--".join([service_name_hbbr, env.get("LANDSCAPE", "default")])
+    container_name_hbbr = "--".join(
+        [service_name_hbbr, env.get("LANDSCAPE", "default")]
+    )
     host_name_hbbr = ".".join([service_name_hbbr, env["ROOT_DOMAIN"]])
 
-    command_hbbs = [
-        "hbbs",
-        "-r",
-        host_name_hbbr
-    ]
+    command_hbbs = ["hbbs", "-r", host_name_hbbr]
     command_hbbr = ["hbbr"]
 
     # https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/docker/
