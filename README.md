@@ -15,7 +15,8 @@
       1. [Feature Configs](#feature-configs)
 2. [Community](#community)
 3. [Official Resources](#official-resources)
-   1. [Rust Desk Server](#rust-desk-server)
+   1. [Rust Desk Server (OSS)](#rust-desk-server-oss)
+      1. [RustDesk Setup](#rustdesk-setup)
 
 ***
 
@@ -224,12 +225,60 @@ To follow up on the previous LinkedIn publications, visit:
 
 # Official Resources
 
-[![ Logo Template ](https://rustdesk.com/_astro/logo.BKb61-he.svg)](https://rustdesk.com/)
+[![Logo RustDesk ](https://raw.githubusercontent.com/rustdesk/rustdesk/refs/heads/master/res/logo-header.svg)](https://rustdesk.com/)
 
-## Rust Desk Server
+## Rust Desk Server (OSS)
 
 Rust Desk Server Information:
 
+- [Github](https://github.com/rustdesk/rustdesk)
+- [RustDesk Server (OSS)](https://github.com/rustdesk/rustdesk-server/releases/latest)
+- [RustDesk Server (Pro)](https://github.com/rustdesk/rustdesk-server-pro/releases/latest)
 - [Documentation](https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/docker/)
-- [Network Chuck](https://www.youtube.com/watch?v=EXL8mMUXs88&ab_channel=NetworkChuck)
-- [Build Docker](https://github.com/rustdesk/rustdesk?tab=readme-ov-file#how-to-build-with-docker)
+- [Tutorial/Overview (Network Chuck)](https://www.youtube.com/watch?v=EXL8mMUXs88&ab_channel=NetworkChuck)
+- [Build Docker Image](https://github.com/rustdesk/rustdesk?tab=readme-ov-file#how-to-build-with-docker)
+
+### RustDesk Setup
+
+#### Client Installation
+
+RustDesk Clients are available for a variety of platforms. Take a look at the documentation for more information:
+
+- [RustDesk Client](https://rustdesk.com/docs/en/client/)
+
+#### Client Setup
+
+When you run RustDesk Client (aka RustDesk Desktop), you'll be presented with a screen similar to this one:
+
+![RustDesk Client Screen ](media/images/not_ready.png)
+
+If the screen shows you the message highlighted in red, saying **Ready, For faster connection, please set up your own server**, it means that you are using RustDesks proprietary Relay Server. So let's switch to the **OpenStudioLandscapes-RustDeskServer** Relay Server:
+
+1. Open Settings
+2. Go to Network
+3. Unlock network settings
+4. Open ID/Relay server
+
+![RustDesk ID/Relay server ](media/images/ID_Relay_server.png)
+
+`ID server` and `Relay server` specify the host name or IP address the RustDesk Server is running on (this could be `localhost` in case the Landscape with OpenStudioLandscapes-RustDeskServer Feature is running on your local machine).
+
+`API server` can be left blank as it is only relevant in the Pro version.
+
+`Key` can be derived from the following local file:
+
+**IMPORTANT: Only share the key from the file with the `.pub` extension with others!**
+
+`.landscapes/<landscape_id>/RustDeskServer__RustDeskServer/data/id_ed25519.pub `
+
+It's content looks similar to this:
+
+`6eU9lygBsQ5JExSvipkVlAsAlcYfKFEgEgdxzNP72SE= `
+
+Copy/paste the full content into the `Key` field of the ID/Relay server window.
+
+Your RustDesk screen should now display a different message and you have successfully configured RustDesk Client to use your local **OpenStudioLandscapes-RustDeskServer** server.
+
+![RustDesk Local Relay Server Ready ](media/images/ready.png)
+
+Repeat this procedure for all your clients and you are good to go to connect from one client to another using your own RustDesk Relay Server.
