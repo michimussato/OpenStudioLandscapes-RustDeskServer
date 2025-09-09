@@ -5,7 +5,7 @@ __all__ = [
 ]
 
 import pathlib
-from typing import Any, Generator, MutableMapping
+from typing import Any, Generator
 
 from dagster import (
     AssetExecutionContext,
@@ -63,17 +63,6 @@ FEATURE_CONFIGS = {
         )
         .expanduser()
         .as_posix(),
-        # "ENV_VAR_PORT_HOST": "1234",
-        # "ENV_VAR_PORT_CONTAINER": "4321",
-        # f"EXTRA_FILE": pathlib.Path(
-        #     "{DOT_FEATURES}",
-        #     FEATURE,
-        #     ".payload",
-        #     "bin",
-        #     "extra.file",
-        # )
-        # .expanduser()
-        # .as_posix(),
     }
 }
 # @formatter:on
