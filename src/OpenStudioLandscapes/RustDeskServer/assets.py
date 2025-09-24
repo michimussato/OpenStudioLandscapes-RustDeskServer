@@ -373,13 +373,23 @@ def compose_rustdeskserver(
     container_name_hbbs = "--".join(
         [service_name_hbbs, env.get("LANDSCAPE", "default")]
     )
-    host_name_hbbs = ".".join([env["HOSTNAME_HBBS"] or service_name_hbbs, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
+    host_name_hbbs = ".".join(
+        [
+            env["HOSTNAME_HBBS"] or service_name_hbbs,
+            env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
+        ]
+    )
 
     service_name_hbbr = "hbbr"
     container_name_hbbr = "--".join(
         [service_name_hbbr, env.get("LANDSCAPE", "default")]
     )
-    host_name_hbbr = ".".join([env["HOSTNAME_HBBR"] or service_name_hbbr, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
+    host_name_hbbr = ".".join(
+        [
+            env["HOSTNAME_HBBR"] or service_name_hbbr,
+            env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
+        ]
+    )
 
     command_hbbs = ["hbbs", "-r", host_name_hbbr]
     command_hbbr = ["hbbr"]
