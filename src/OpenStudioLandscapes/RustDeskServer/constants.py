@@ -20,7 +20,7 @@ from dagster import (
 LOGGER = get_dagster_logger(__name__)
 
 from OpenStudioLandscapes.engine.constants import DOCKER_USE_CACHE_GLOBAL
-from OpenStudioLandscapes.engine.enums import OpenStudioLandscapesConfig
+from OpenStudioLandscapes.engine.enums import OpenStudioLandscapesConfig, FeatureVolumeType
 
 DOCKER_USE_CACHE = DOCKER_USE_CACHE_GLOBAL or False
 
@@ -59,14 +59,24 @@ FEATURE_CONFIGS = {
         "HBBR_RELAY_SERVICES_PORT_CONTAINER": "21117/tcp",
         "HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER": "21119",  # Can be disabled if web clients are not needed
         "HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST": "21119/tcp",  # Can be disabled if web clients are not needed
-        "DATA_STORE": pathlib.Path(
-            "{DOT_LANDSCAPES}",
-            "{LANDSCAPE}",
-            f"{GROUP}__{'__'.join(KEY)}",
-            "data",
-        )
-        .expanduser()
-        .as_posix(),
+        "DATA_STORE": {
+            FeatureVolumeType.CONTAINED: pathlib.Path(
+                "{DOT_LANDSCAPES}",
+                "{LANDSCAPE}",
+                f"{GROUP}__{'__'.join(KEY)}",
+                "data",
+            )
+            .expanduser()
+            .as_posix(),
+            FeatureVolumeType.SHARED: pathlib.Path(
+                "{DOT_LANDSCAPES}",
+                "{DOT_SHARED_VOLUMES}",
+                f"{GROUP}__{'__'.join(KEY)}",
+                "data",
+            )
+            .expanduser()
+            .as_posix(),
+        }[FeatureVolumeType.CONTAINED]
     }
 }
 # @formatter:on
