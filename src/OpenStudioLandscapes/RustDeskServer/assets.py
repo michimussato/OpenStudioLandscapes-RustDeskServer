@@ -333,9 +333,9 @@ def compose_rustdeskserver(
             ]
         }
     elif "network_mode" in compose_networks:
-        network_dict = {"network_mode": compose_networks.get("network_mode")}
+        network_dict = {"network_mode": compose_networks["network_mode"]}
 
-    data_store = pathlib.Path(env.get("DATA_STORE"))
+    data_store = pathlib.Path(env["DATA_STORE"])
     data_store.mkdir(parents=True, exist_ok=True)
 
     volumes_dict = {
@@ -401,7 +401,7 @@ def compose_rustdeskserver(
             service_name_hbbs: {
                 "container_name": container_name_hbbs,
                 "hostname": host_name_hbbs,
-                "domainname": env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+                "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": "unless-stopped",
                 "image": "rustdesk/rustdesk-server:latest",
@@ -422,7 +422,7 @@ def compose_rustdeskserver(
             service_name_hbbr: {
                 "container_name": container_name_hbbr,
                 "hostname": host_name_hbbr,
-                "domainname": env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+                "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": "unless-stopped",
                 "image": "rustdesk/rustdesk-server:latest",
