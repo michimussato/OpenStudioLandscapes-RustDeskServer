@@ -255,7 +255,7 @@ If the screen shows you the message highlighted in red, saying **Ready, For fast
 `Key` can be derived from the following local file:
 
 > [!WARNING]
-> 
+>
 > Only share the key from the file with the `.pub`
 > extension with others!            
 

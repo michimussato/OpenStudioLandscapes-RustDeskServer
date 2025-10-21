@@ -164,7 +164,7 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
         text=textwrap.dedent(
             """\
             > [!WARNING]
-            > 
+            >
             > Only share the key from the file with the `.pub`
             > extension with others!\
             """
