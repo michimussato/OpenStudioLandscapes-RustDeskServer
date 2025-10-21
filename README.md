@@ -254,7 +254,10 @@ If the screen shows you the message highlighted in red, saying **Ready, For fast
 
 `Key` can be derived from the following local file:
 
-**IMPORTANT: Only share the key from the file with the `.pub` extension with others!**
+> [!WARNING]
+> 
+> Only share the key from the file with the `.pub`
+> extension with others!            
 
 `.landscapes/<landscape_id>/RustDeskServer__RustDeskServer/data/id_ed25519.pub `
 
