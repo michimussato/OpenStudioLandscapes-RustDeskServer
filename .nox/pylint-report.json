@@ -282,7 +282,7 @@
         "endColumn": 54,
         "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
         "symbol": "unused-wildcard-import",
-        "message": "Unused import(s) queue, threading, shutil, subprocess, OpenStudioLandscapesDockerException, docker_build_cmd, docker_push_cmd, OutputReader, execute_in_threads, docker_process_cmds and docker_do from wildcard import of OpenStudioLandscapes.engine.utils.docker",
+        "message": "Unused import(s) queue, shutil, subprocess, threading, OpenStudioLandscapesDockerException, docker_build_cmd, docker_push_cmd, OutputReader, execute_in_threads, docker_process_cmds and docker_do from wildcard import of OpenStudioLandscapes.engine.utils.docker",
         "message-id": "W0614"
     },
     {
