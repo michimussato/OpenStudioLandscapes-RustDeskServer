@@ -94,9 +94,13 @@ code_location_name = "OpenStudioLandscapes-RustDeskServer"
 module_name = "OpenStudioLandscapes.RustDeskServer.definitions"
 
 [tool.setuptools]
+include-package-data = true
 packages = [
     "OpenStudioLandscapes.RustDeskServer",
 ]
 platforms = [
     "Linux",
 ]
+
+[tool.setuptools.package-dir]
+"" = "src"
