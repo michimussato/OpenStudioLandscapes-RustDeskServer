@@ -1,0 +1,31 @@
+[project]
+name = "OpenStudioLandscapes-RustDeskServer"
+description = "RustDeskServer Feature for OpenStudioLandscapes"
+
+[project.urls]
+Homepage = "https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer"
+
+[project.optional-dependencies]
+sbom = [
+    "OpenStudioLandscapes-RustDeskServer[graphviz]",
+]
+nox = [
+    "OpenStudioLandscapes-RustDeskServer[testing]",
+]
+dev = [
+    "OpenStudioLandscapes-RustDeskServer[testing]",
+    "OpenStudioLandscapes-RustDeskServer[lint]",
+    "OpenStudioLandscapes-RustDeskServer[nox]",
+    "OpenStudioLandscapes-RustDeskServer[sbom]",
+    "OpenStudioLandscapes-RustDeskServer[coverage]",
+    "OpenStudioLandscapes-RustDeskServer[readme]",
+]
+
+[tool.setuptools]
+packages = [
+    "OpenStudioLandscapes.RustDeskServer"
+]
+
+[tool.dagster]
+module_name = "OpenStudioLandscapes.RustDeskServer.definitions"
+code_location_name = "OpenStudioLandscapes-RustDeskServer"
