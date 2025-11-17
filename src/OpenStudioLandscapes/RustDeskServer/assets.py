@@ -404,7 +404,7 @@ def compose_rustdeskserver(
                 "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": "unless-stopped",
-                "image": "rustdesk/rustdesk-server:latest",
+                "image": "docker.io/rustdesk/rustdesk-server:latest",
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbs),
