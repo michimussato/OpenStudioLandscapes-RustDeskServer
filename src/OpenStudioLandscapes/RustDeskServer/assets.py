@@ -256,9 +256,9 @@ def compose_networks(
     Output[dict[str, dict[str, dict[str, str]]]] | AssetMaterialization, None, None
 ]:
 
-    compose_network_mode = ComposeNetworkMode.DEFAULT
+    compose_network_mode = DockerComposePolicies.NETWORK_MODE.DEFAULT
 
-    if compose_network_mode == ComposeNetworkMode.DEFAULT:
+    if compose_network_mode is DockerComposePolicies.NETWORK_MODE.DEFAULT:
         docker_dict = {
             "networks": {
                 "rustdeskserver": {
@@ -403,7 +403,7 @@ def compose_rustdeskserver(
                 "hostname": host_name_hbbs,
                 "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
-                "restart": "unless-stopped",
+                "restart": DockerComposePolicies.RESTART_POLICY.UNLESS_STOPPED.value,
                 "image": "docker.io/rustdesk/rustdesk-server:latest",
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
@@ -424,7 +424,7 @@ def compose_rustdeskserver(
                 "hostname": host_name_hbbr,
                 "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
-                "restart": "unless-stopped",
+                "restart": DockerComposePolicies.RESTART_POLICY.UNLESS_STOPPED.value,
                 "image": "rustdesk/rustdesk-server:latest",
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
