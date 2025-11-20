@@ -182,32 +182,6 @@
         "message-id": "C0116"
     },
     {
-        "type": "error",
-        "module": "OpenStudioLandscapes.RustDeskServer.assets",
-        "obj": "compose_networks",
-        "line": 259,
-        "column": 27,
-        "endLine": 259,
-        "endColumn": 48,
-        "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
-        "symbol": "undefined-variable",
-        "message": "Undefined variable 'DockerComposePolicies'",
-        "message-id": "E0602"
-    },
-    {
-        "type": "error",
-        "module": "OpenStudioLandscapes.RustDeskServer.assets",
-        "obj": "compose_networks",
-        "line": 261,
-        "column": 31,
-        "endLine": 261,
-        "endColumn": 52,
-        "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
-        "symbol": "undefined-variable",
-        "message": "Undefined variable 'DockerComposePolicies'",
-        "message-id": "E0602"
-    },
-    {
         "type": "convention",
         "module": "OpenStudioLandscapes.RustDeskServer.assets",
         "obj": "compose_rustdeskserver",
@@ -232,32 +206,6 @@
         "symbol": "too-many-locals",
         "message": "Too many local variables (23/15)",
         "message-id": "R0914"
-    },
-    {
-        "type": "error",
-        "module": "OpenStudioLandscapes.RustDeskServer.assets",
-        "obj": "compose_rustdeskserver",
-        "line": 406,
-        "column": 27,
-        "endLine": 406,
-        "endColumn": 48,
-        "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
-        "symbol": "undefined-variable",
-        "message": "Undefined variable 'DockerComposePolicies'",
-        "message-id": "E0602"
-    },
-    {
-        "type": "error",
-        "module": "OpenStudioLandscapes.RustDeskServer.assets",
-        "obj": "compose_rustdeskserver",
-        "line": 427,
-        "column": 27,
-        "endLine": 427,
-        "endColumn": 48,
-        "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
-        "symbol": "undefined-variable",
-        "message": "Undefined variable 'DockerComposePolicies'",
-        "message-id": "E0602"
     },
     {
         "type": "convention",
@@ -308,7 +256,7 @@
         "endColumn": 51,
         "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
         "symbol": "unused-wildcard-import",
-        "message": "Unused import(s) docker_config, DOCKER_PROGRESS, DOCKER_CONFIG, DOCKER_USE_CACHE_GLOBAL, DOCKER_USE_CACHE_BASE, PREFIX_COMPOSE_SCOPE, GROUP_COMPOSE, KEY_COMPOSE, ASSET_HEADER_COMPOSE, ENVIRONMENT_COMPOSE, GROUP_COMPOSE_LICENSE_SERVER, KEY_COMPOSE_LICENSE_SERVER, ASSET_HEADER_COMPOSE_LICENSE_SERVER, ENVIRONMENT_COMPOSE_LICENSE_SERVER, GROUP_COMPOSE_WORKER, KEY_COMPOSE_WORKER, ASSET_HEADER_COMPOSE_WORKER, ENVIRONMENT_COMPOSE_WORKER, GROUP_BASE_ENV, KEY_BASE_ENV, ASSET_HEADER_BASE_ENV, GROUP_BASE, KEY_BASE, GROUP_LANDSCAPE_MAP, KEY_LANDSCAPE_MAP, ASSET_HEADER_LANDSCAPE_MAP, GROUP_TELEPORT, KEY_TELEPORT, ASSET_HEADER_TELEPORT, GROUP_TRAEFIK, KEY_TRAEFIK, ASSET_HEADER_TRAEFIK, GROUP_DISTRIBUTABLE, KEY_DISTRIBUTABLE, ASSET_HEADER_DISTRIBUTABLE, constants_base, features, MutableMapping, enum, OpenStudioLandscapesConfig, FeatureVolumeType, ComposeScope, ComposeCmdExclusion, ComposeNetworkMode, DockerRegistry, DockerRepositoryType, DockerConfig, EnvVar, FEATURES, constants_compose, constants_compose_license_server and constants_compose_worker from wildcard import of OpenStudioLandscapes.engine.constants",
+        "message": "Unused import(s) docker_config, os, LOGGER, DOCKER_PROGRESS, docker_config_, msg, e, DOCKER_CONFIG, DOCKER_USE_CACHE_GLOBAL, DOCKER_USE_CACHE_BASE, PREFIX_COMPOSE_SCOPE, GROUP_COMPOSE, KEY_COMPOSE, ASSET_HEADER_COMPOSE, ENVIRONMENT_COMPOSE, GROUP_COMPOSE_LICENSE_SERVER, KEY_COMPOSE_LICENSE_SERVER, ASSET_HEADER_COMPOSE_LICENSE_SERVER, ENVIRONMENT_COMPOSE_LICENSE_SERVER, GROUP_COMPOSE_WORKER, KEY_COMPOSE_WORKER, ASSET_HEADER_COMPOSE_WORKER, ENVIRONMENT_COMPOSE_WORKER, GROUP_BASE_ENV, KEY_BASE_ENV, ASSET_HEADER_BASE_ENV, GROUP_BASE, KEY_BASE, GROUP_LANDSCAPE_MAP, KEY_LANDSCAPE_MAP, ASSET_HEADER_LANDSCAPE_MAP, GROUP_TELEPORT, KEY_TELEPORT, ASSET_HEADER_TELEPORT, GROUP_TRAEFIK, KEY_TRAEFIK, ASSET_HEADER_TRAEFIK, GROUP_DISTRIBUTABLE, KEY_DISTRIBUTABLE, ASSET_HEADER_DISTRIBUTABLE, constants_base, features, MutableMapping, get_dagster_logger, enum, OpenStudioLandscapesConfig, FeatureVolumeType, ComposeScope, ComposeCmdExclusion, DockerComposeNetworkMode, DockerComposeRestartPolicy, DockerComposeDependsOnPolicy, DockerRegistry, DockerRepositoryType, DockerConfig, EnvVar, FEATURES, constants_compose, constants_compose_license_server and constants_compose_worker from wildcard import of OpenStudioLandscapes.engine.constants",
         "message-id": "W0614"
     },
     {
@@ -321,20 +269,7 @@
         "endColumn": 47,
         "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
         "symbol": "unused-wildcard-import",
-        "message": "Unused import(s) operator_, os, shlex, git, LOGGER, cmd_list_to_str, get_pip_install_str, get_apt_install_str, get_copy_str, get_wget_str, get_git_root, get_configs_root, get_data_root, get_bin_root, get_image_name, parse_docker_image_path, get_compose_scope, get_feature_config, expand_dict_vars, serialize_dict, metadatavalues_from_dict, get_bool_env, get_str_env, get_dynamic_ins, get_teleport_app_dict, List, Union, OpExecutionContext, get_dagster_logger, ComposeScopeException and OpenStudioLandscapesException from wildcard import of OpenStudioLandscapes.engine.utils",
-        "message-id": "W0614"
-    },
-    {
-        "type": "warning",
-        "module": "OpenStudioLandscapes.RustDeskServer.assets",
-        "obj": "",
-        "line": 32,
-        "column": 0,
-        "endLine": 32,
-        "endColumn": 54,
-        "path": "src/OpenStudioLandscapes/RustDeskServer/assets.py",
-        "symbol": "unused-wildcard-import",
-        "message": "Unused import(s) queue, shutil, subprocess, threading, OpenStudioLandscapesDockerException, docker_build_cmd, docker_push_cmd, OutputReader, execute_in_threads, docker_process_cmds and docker_do from wildcard import of OpenStudioLandscapes.engine.utils.docker",
+        "message": "Unused import(s) operator_, shlex, time, git, cmd_list_to_str, get_pip_install_str, get_apt_install_str, get_copy_str, get_wget_str, get_git_root, get_configs_root, get_data_root, get_bin_root, get_image_name, parse_docker_image_path, get_compose_scope, get_feature_config, expand_dict_vars, metadatavalues_from_dict, get_bool_env, get_str_env, get_dynamic_ins, get_image_metadata, create_image, get_networks_dict, Dict, List, Union, OpExecutionContext, ComposeScopeException, OpenStudioLandscapesException, queue, shutil, subprocess, threading, backoff, OpenStudioLandscapesDockerException, docker_build_cmd, docker_push_cmd, OutputReader, execute_in_threads, docker_process_cmds and docker_do from wildcard import of OpenStudioLandscapes.engine.utils",
         "message-id": "W0614"
     },
     {
