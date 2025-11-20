@@ -56,5 +56,5 @@ src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0103: Module name "Rus
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:11:4: C0103: Constant name "dist_name" doesn't conform to UPPER_CASE naming style (invalid-name)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.67/10 (previous run: 5.99/10, +0.68)
+Your code has been rated at 6.67/10 (previous run: 6.69/10, -0.02)
 
