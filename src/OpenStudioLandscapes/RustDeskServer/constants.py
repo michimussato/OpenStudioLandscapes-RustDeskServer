@@ -41,10 +41,8 @@ ASSET_HEADER = {
 FEATURE_CONFIGS = {
     OpenStudioLandscapesConfig.DEFAULT: {
         "DOCKER_USE_CACHE": DOCKER_USE_CACHE,
-        "HOSTNAME_HBBS": "hbbs",
-        "HOSTNAME_HBBR": "hbbr",
-        "TELEPORT_ENTRY_POINT_HOST": "",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
-        "TELEPORT_ENTRY_POINT_PORT": "",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
+        # "HOSTNAME_HBBS": "hbbs",
+        # "HOSTNAME_HBBR": "hbbr",
         "HBBS_ALWAYS_USE_RELAY": ["Y", "N"][0],
         # hbbs
         "HBBS_WEB_CONSOLE_PORT_HOST": "21114",  # Only in Pro version
