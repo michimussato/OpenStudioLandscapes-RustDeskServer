@@ -170,10 +170,6 @@ The following variables are being declared in `OpenStudioLandscapes.RustDeskServ
 | Variable                                            | Type   | Value                                                              |
 | :-------------------------------------------------- | :----- | :----------------------------------------------------------------- |
 | `DOCKER_USE_CACHE`                                  | `bool` | `False`                                                            |
-| `HOSTNAME_HBBS`                                     | `str`  | `hbbs`                                                             |
-| `HOSTNAME_HBBR`                                     | `str`  | `hbbr`                                                             |
-| `TELEPORT_ENTRY_POINT_HOST`                         | `str`  | ``                                                                 |
-| `TELEPORT_ENTRY_POINT_PORT`                         | `str`  | ``                                                                 |
 | `HBBS_ALWAYS_USE_RELAY`                             | `str`  | `Y`                                                                |
 | `HBBS_WEB_CONSOLE_PORT_HOST`                        | `str`  | `21114`                                                            |
 | `HBBS_WEB_CONSOLE_PORT_CONTAINER`                   | `str`  | `21114/tcp`                                                        |
