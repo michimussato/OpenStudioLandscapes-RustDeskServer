@@ -29,7 +29,6 @@ from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
 from OpenStudioLandscapes.engine.constants import *
 from OpenStudioLandscapes.engine.enums import *
 from OpenStudioLandscapes.engine.utils import *
-from OpenStudioLandscapes.engine.utils.docker import *
 
 from OpenStudioLandscapes.RustDeskServer.constants import *
 
