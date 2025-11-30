@@ -49,7 +49,6 @@ dev = [
     "OpenStudioLandscapes-RustDeskServer[readme]",
     "OpenStudioLandscapes-RustDeskServer[sbom]",
     "OpenStudioLandscapes-RustDeskServer[testing]",
-    "dagster-webserver==1.9.11",
 ]
 graphviz = [
     "graphviz",
