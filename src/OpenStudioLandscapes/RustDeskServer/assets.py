@@ -1,7 +1,7 @@
 import copy
 import json
 import pathlib
-from typing import Any, Generator
+from typing import Any, Generator, Dict, List
 
 import yaml
 from dagster import (
@@ -73,9 +73,9 @@ compose = get_compose(
 feature_out = get_feature_out(
     ASSET_HEADER=ASSET_HEADER,
     feature_out_ins={
-        "env": dict,
-        "compose": dict,
-        "group_in": dict,
+        "env": Dict,
+        "compose": Dict,
+        "group_in": Dict,
     },
 )
 
@@ -101,13 +101,13 @@ docker_config_json = get_docker_config_json(
 # )
 # def build_docker_image(
 #     context: AssetExecutionContext,
-#     env: dict,  # pylint: disable=redefined-outer-name
+#     env: Dict,  # pylint: disable=redefined-outer-name
 #     docker_config_json: pathlib.Path,  # pylint: disable=redefined-outer-name
-#     group_in: dict,  # pylint: disable=redefined-outer-name
-# ) -> Generator[Output[dict] | AssetMaterialization, None, None]:
+#     group_in: Dict,  # pylint: disable=redefined-outer-name
+# ) -> Generator[Output[Dict] | AssetMaterialization, None, None]:
 #     """ """
 #
-#     build_base_image_data: dict = group_in["docker_image"]
+#     build_base_image_data: Dict = group_in["docker_image"]
 #     build_base_docker_config: DockerConfig = group_in["docker_config"]
 #
 #     if build_base_docker_config.value["docker_push"]:
@@ -118,7 +118,7 @@ docker_config_json = get_docker_config_json(
 #         ]
 #
 #     build_base_parent_image_name: str = build_base_image_data["image_name"]
-#     build_base_parent_image_tags: list = build_base_image_data["image_tags"]
+#     build_base_parent_image_tags: List = build_base_image_data["image_tags"]
 #
 #     docker_file = pathlib.Path(
 #         env["DOT_LANDSCAPES"],
@@ -257,9 +257,9 @@ docker_config_json = get_docker_config_json(
 )
 def compose_networks(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
 ) -> Generator[
-    Output[dict[str, dict[str, dict[str, str]]]] | AssetMaterialization, None, None
+    Output[Dict[str, Dict[str, Dict[str, str]]]] | AssetMaterialization, None, None
 ]:
 
     compose_network_mode = DockerComposePolicies.NETWORK_MODE.BRIDGE
@@ -303,10 +303,10 @@ def compose_networks(
 )
 def compose_rustdeskserver(
     context: AssetExecutionContext,
-    # build: dict,  # pylint: disable=redefined-outer-name
-    env: dict,  # pylint: disable=redefined-outer-name
-    compose_networks: dict,  # pylint: disable=redefined-outer-name
-) -> Generator[Output[dict] | AssetMaterialization, None, None]:
+    # build: Dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
+    compose_networks: Dict,  # pylint: disable=redefined-outer-name
+) -> Generator[Output[Dict] | AssetMaterialization, None, None]:
     """ """
 
     network_dict = {}
@@ -473,7 +473,7 @@ def compose_rustdeskserver(
 def compose_maps(
     context: AssetExecutionContext,
     **kwargs,  # pylint: disable=redefined-outer-name
-) -> Generator[Output[list[dict]] | AssetMaterialization, None, None]:
+) -> Generator[Output[List[Dict]] | AssetMaterialization, None, None]:
 
     ret = list(kwargs.values())
 
@@ -495,7 +495,7 @@ def compose_maps(
 )
 def cmd_extend(
     context: AssetExecutionContext,
-) -> Generator[Output[list[Any]] | AssetMaterialization | Any, Any, None]:
+) -> Generator[Output[List[Any]] | AssetMaterialization | Any, Any, None]:
 
     ret = []
 
@@ -515,7 +515,7 @@ def cmd_extend(
 )
 def cmd_append(
     context: AssetExecutionContext,
-) -> Generator[Output[dict[str, list[Any]]] | AssetMaterialization | Any, Any, None]:
+) -> Generator[Output[Dict[str, List[Any]]] | AssetMaterialization | Any, Any, None]:
 
     ret = {"cmd": [], "exclude_from_quote": []}
 
