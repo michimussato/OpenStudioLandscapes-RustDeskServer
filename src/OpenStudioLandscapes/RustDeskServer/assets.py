@@ -1,7 +1,7 @@
 import copy
-import json
+import enum
 import pathlib
-from typing import Any, Generator, Dict, List
+from typing import Generator, Dict, List, Union
 
 import yaml
 from dagster import (
@@ -11,256 +11,102 @@ from dagster import (
     AssetMaterialization,
     MetadataValue,
     Output,
-    asset,
+    asset, AssetsDefinition,
 )
 from OpenStudioLandscapes.engine.common_assets.compose import get_compose
-from OpenStudioLandscapes.engine.common_assets.constants import get_constants
 from OpenStudioLandscapes.engine.common_assets.docker_compose_graph import (
     get_docker_compose_graph,
 )
-from OpenStudioLandscapes.engine.common_assets.docker_config import get_docker_config
-from OpenStudioLandscapes.engine.common_assets.docker_config_json import (
-    get_docker_config_json,
-)
-from OpenStudioLandscapes.engine.common_assets.env import get_env
-from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out
-from OpenStudioLandscapes.engine.common_assets.group_in import get_group_in
+from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out_v2
+from OpenStudioLandscapes.engine.common_assets.group_in import get_feature_in, get_feature_in_parent
 from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
+from OpenStudioLandscapes.engine.config.models import ConfigEngine
 from OpenStudioLandscapes.engine.constants import *
 from OpenStudioLandscapes.engine.enums import *
 from OpenStudioLandscapes.engine.utils import *
 from OpenStudioLandscapes.engine.utils.docker.compose_dicts import *
 
+# from OpenStudioLandscapes.RustDeskServer import dist
+from OpenStudioLandscapes.RustDeskServer.config.models import CONFIG_STR, Config
 from OpenStudioLandscapes.RustDeskServer.constants import *
 
-constants = get_constants(
+from OpenStudioLandscapes.engine.common_assets.compose_scope import (
+get_compose_scope_group__cmd,
+)
+
+from OpenStudioLandscapes.engine.common_assets.feature import (
+get_feature__CONFIG
+)
+
+# https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
+yaml.SafeDumper.add_multi_representer(
+    data_type=enum.Enum,
+    representer=yaml.representer.SafeRepresenter.represent_str,
+)
+
+
+compose_scope_group__cmd: AssetsDefinition = get_compose_scope_group__cmd(
+    ASSET_HEADER=ASSET_HEADER,
+)
+
+CONFIG: AssetsDefinition = get_feature__CONFIG(
+    ASSET_HEADER=ASSET_HEADER,
+    CONFIG_STR=CONFIG_STR,
+    search_model_of_type=Config,
+)
+
+feature_in: AssetsDefinition = get_feature_in(
+    ASSET_HEADER=ASSET_HEADER,
+    ASSET_HEADER_BASE=ASSET_HEADER_BASE,
+    ASSET_HEADER_FEATURE_IN={},
+)
+
+group_out: AssetsDefinition = get_group_out(
     ASSET_HEADER=ASSET_HEADER,
 )
 
 
-docker_config = get_docker_config(
+docker_compose_graph: AssetsDefinition = get_docker_compose_graph(
     ASSET_HEADER=ASSET_HEADER,
 )
 
 
-group_in = get_group_in(
-    ASSET_HEADER=ASSET_HEADER,
-    ASSET_HEADER_PARENT=ASSET_HEADER_BASE,
-    input_name=str(GroupIn.BASE_IN),
-)
-
-
-env = get_env(
+compose: AssetsDefinition = get_compose(
     ASSET_HEADER=ASSET_HEADER,
 )
 
 
-group_out = get_group_out(
+feature_out_v2: AssetsDefinition = get_feature_out_v2(
     ASSET_HEADER=ASSET_HEADER,
 )
 
 
-docker_compose_graph = get_docker_compose_graph(
+# Produces
+# - feature_in_parent
+# - CONFIG_PARENT
+# if ConfigParent is or type FeatureBaseModel
+feature_in_parent: Union[AssetsDefinition, None] = get_feature_in_parent(
     ASSET_HEADER=ASSET_HEADER,
+    config_parent=ConfigParent,
 )
-
-
-compose = get_compose(
-    ASSET_HEADER=ASSET_HEADER,
-)
-
-
-feature_out = get_feature_out(
-    ASSET_HEADER=ASSET_HEADER,
-    feature_out_ins={
-        "env": Dict,
-        "compose": Dict,
-        "group_in": Dict,
-    },
-)
-
-
-docker_config_json = get_docker_config_json(
-    ASSET_HEADER=ASSET_HEADER,
-)
-
-
-# @asset(
-#     **ASSET_HEADER,
-#     ins={
-#         "env": AssetIn(
-#             AssetKey([*ASSET_HEADER["key_prefix"], "env"]),
-#         ),
-#         "docker_config_json": AssetIn(
-#             AssetKey([*ASSET_HEADER["key_prefix"], "docker_config_json"]),
-#         ),
-#         "group_in": AssetIn(
-#             AssetKey([*ASSET_HEADER_BASE["key_prefix"], str(GroupIn.BASE_IN)])
-#         ),
-#     },
-# )
-# def build_docker_image(
-#     context: AssetExecutionContext,
-#     env: Dict,  # pylint: disable=redefined-outer-name
-#     docker_config_json: pathlib.Path,  # pylint: disable=redefined-outer-name
-#     group_in: Dict,  # pylint: disable=redefined-outer-name
-# ) -> Generator[Output[Dict] | AssetMaterialization, None, None]:
-#     """ """
-#
-#     build_base_image_data: Dict = group_in["docker_image"]
-#     build_base_docker_config: DockerConfig = group_in["docker_config"]
-#
-#     if build_base_docker_config.value["docker_push"]:
-#         build_base_parent_image_prefix: str = build_base_image_data["image_prefix_full"]
-#     else:
-#         build_base_parent_image_prefix: str = build_base_image_data[
-#             "image_prefix_local"
-#         ]
-#
-#     build_base_parent_image_name: str = build_base_image_data["image_name"]
-#     build_base_parent_image_tags: List = build_base_image_data["image_tags"]
-#
-#     docker_file = pathlib.Path(
-#         env["DOT_LANDSCAPES"],
-#         env.get("LANDSCAPE"),
-#         f"{ASSET_HEADER['group_name']}__{'__'.join(ASSET_HEADER['key_prefix'])}",
-#         "__".join(context.asset_key.path),
-#         "Dockerfiles",
-#         "Dockerfile",
-#     )
-#
-#     docker_file.parent.mkdir(parents=True, exist_ok=True)
-#
-#     image_name = get_image_name(context=context)
-#     image_prefix_local = parse_docker_image_path(
-#         docker_config=build_base_docker_config,
-#         prepend_registry=False,
-#     )
-#     image_prefix_full = parse_docker_image_path(
-#         docker_config=build_base_docker_config,
-#         prepend_registry=True,
-#     )
-#
-#     tags = [
-#         env.get("LANDSCAPE", str(time.time())),
-#     ]
-#
-#     # @formatter:off
-#     docker_file_str = textwrap.dedent(
-#         """\
-#         # {auto_generated}
-#         # {dagster_url}
-#         FROM {parent_image} AS {image_name}
-#         LABEL authors="{AUTHOR}"
-#
-#         ARG DEBIAN_FRONTEND=noninteractive
-#
-#         ENV CONTAINER_TIMEZONE={TIMEZONE}
-#         ENV SET_CONTAINER_TIMEZONE=true
-#
-#         SHELL ["/bin/bash", "-c"]
-#
-#         RUN apt-get update && apt-get upgrade -y
-#
-#         # WORKDIR /workdir
-#         # USER user
-#
-#         # RUN commands
-#         # [...]
-#
-#         RUN apt-get clean
-#
-#         ENTRYPOINT []
-#         """
-#     ).format(
-#         auto_generated=f"AUTO-GENERATED by Dagster Asset {'__'.join(context.asset_key.path)}",
-#         dagster_url=urllib.parse.quote(
-#             f"http://localhost:3000/asset-groups/{'%2F'.join(context.asset_key.path)}",
-#             safe=":/%",
-#         ),
-#         image_name=image_name,
-#         # Todo: this won't work as expected if len(tags) > 1
-#         parent_image=f"{build_base_parent_image_prefix}{build_base_parent_image_name}:{build_base_parent_image_tags[0]}",
-#         **env,
-#     )
-#     # @formatter:on
-#
-#     with open(docker_file, "w") as fw:
-#         fw.write(docker_file_str)
-#
-#     with open(docker_file, "r") as fr:
-#         docker_file_content = fr.read()
-#
-#     image_data = {
-#         "image_name": image_name,
-#         "image_prefix_local": image_prefix_local,
-#         "image_prefix_full": image_prefix_full,
-#         "image_tags": tags,
-#         "image_parent": copy.deepcopy(build_base_image_data),
-#     }
-#
-#     context.log.info(f"{image_data = }")
-#
-#     cmds = []
-#
-#     tags_local = [f"{image_prefix_local}{image_name}:{tag}" for tag in tags]
-#     tags_full = [f"{image_prefix_full}{image_name}:{tag}" for tag in tags]
-#
-#     cmd_build = docker_build_cmd(
-#         context=context,
-#         docker_config_json=docker_config_json,
-#         docker_file=docker_file,
-#         tags_local=tags_local,
-#         tags_full=tags_full,
-#     )
-#
-#     cmds.append(cmd_build)
-#
-#     cmds_push = docker_push_cmd(
-#         context=context,
-#         docker_config_json=docker_config_json,
-#         tags_full=tags_full,
-#     )
-#
-#     cmds.extend(cmds_push)
-#
-#     context.log.info(f"{cmds = }")
-#
-#     logs = []
-#
-#     for logs_ in docker_process_cmds(
-#         context=context,
-#         cmds=cmds,
-#     ):
-#         logs.append(logs_)
-#
-#     yield Output(image_data)
-#
-#     yield AssetMaterialization(
-#         asset_key=context.asset_key,
-#         metadata={
-#             "__".join(context.asset_key.path): MetadataValue.json(image_data),
-#             "docker_file": MetadataValue.md(f"```shell\n{docker_file_content}\n```"),
-#             "env": MetadataValue.json(env),
-#             "logs": MetadataValue.json(logs),
-#         },
-#     )
 
 
 @asset(
     **ASSET_HEADER,
     ins={
-        "env": AssetIn(
-            AssetKey([*ASSET_HEADER["key_prefix"], "env"]),
+        "CONFIG": AssetIn(
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
     },
 )
 def compose_networks(
     context: AssetExecutionContext,
-    env: Dict,  # pylint: disable=redefined-outer-name
+    CONFIG: Config,  # pylint: disable=redefined-outer-name
 ) -> Generator[
     Output[Dict[str, Dict[str, Dict[str, str]]]] | AssetMaterialization, None, None
 ]:
+
+    env: Dict = CONFIG.env
 
     compose_network_mode = DockerComposePolicies.NETWORK_MODE.BRIDGE
 
@@ -279,10 +125,7 @@ def compose_networks(
         metadata={
             "__".join(context.asset_key.path): MetadataValue.json(docker_dict),
             "compose_network_mode": MetadataValue.text(compose_network_mode.value),
-            "docker_dict": MetadataValue.md(
-                f"```json\n{json.dumps(docker_dict, indent=2)}\n```"
-            ),
-            "docker_yaml": MetadataValue.md(f"```shell\n{docker_yaml}\n```"),
+            "docker_yaml": MetadataValue.md(f"```yaml\n{docker_yaml}\n```"),
         },
     )
 
@@ -290,12 +133,9 @@ def compose_networks(
 @asset(
     **ASSET_HEADER,
     ins={
-        "env": AssetIn(
-            AssetKey([*ASSET_HEADER["key_prefix"], "env"]),
+        "CONFIG": AssetIn(
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
-        # "build": AssetIn(
-        #     AssetKey([*ASSET_HEADER["key_prefix"], "build_docker_image"]),
-        # ),
         "compose_networks": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "compose_networks"]),
         ),
@@ -303,11 +143,14 @@ def compose_networks(
 )
 def compose_rustdeskserver(
     context: AssetExecutionContext,
-    # build: Dict,  # pylint: disable=redefined-outer-name
-    env: Dict,  # pylint: disable=redefined-outer-name
+    CONFIG: Config,  # pylint: disable=redefined-outer-name
     compose_networks: Dict,  # pylint: disable=redefined-outer-name
 ) -> Generator[Output[Dict] | AssetMaterialization, None, None]:
     """ """
+
+    env: Dict = CONFIG.env
+
+    config_engine: ConfigEngine = CONFIG.config_engine
 
     network_dict = {}
     ports_dict_hbbs = {}
@@ -317,23 +160,23 @@ def compose_rustdeskserver(
         network_dict = {"networks": list(compose_networks.get("networks", {}).keys())}
         ports_dict_hbbs = {
             "ports": [
-                f"{env['HBBS_WEB_CONSOLE_PORT_HOST']}:{env['HBBS_WEB_CONSOLE_PORT_CONTAINER']}",
-                f"{env['HBBS_NAT_TYPE_TEST_PORT_HOST']}:{env['HBBS_NAT_TYPE_TEST_PORT_CONTAINER']}",
-                f"{env['HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST']}:{env['HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER']}",
-                f"{env['HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST']}:{env['HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER']}",
-                f"{env['HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST']}:{env['HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER']}",
+                f"{CONFIG.rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER}",
+                f"{CONFIG.rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER}",
+                f"{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER}",
+                f"{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER}",
+                f"{CONFIG.rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER}",
             ]
         }
         ports_dict_hbbr = {
             "ports": [
-                f"{env['HBBR_RELAY_SERVICES_PORT_HOST']}:{env['HBBR_RELAY_SERVICES_PORT_CONTAINER']}",
-                f"{env['HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER']}:{env['HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST']}",
+                f"{CONFIG.rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST}:{CONFIG.rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER}",
+                f"{CONFIG.rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER}:{CONFIG.rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST}",
             ]
         }
     elif "network_mode" in compose_networks:
         network_dict = {"network_mode": compose_networks["network_mode"]}
 
-    data_store = pathlib.Path(env["DATA_STORE"])
+    data_store = CONFIG.rustdeskserver_data_store_expanded
     data_store.mkdir(parents=True, exist_ok=True)
 
     volumes_dict = {
@@ -352,7 +195,7 @@ def compose_rustdeskserver(
 
         volume_dir_host_rel_path = get_relative_path_via_common_root(
             context=context,
-            path_src=pathlib.Path(env["DOCKER_COMPOSE"]),
+            path_src=CONFIG.docker_compose_expanded,
             path_dst=pathlib.Path(host),
             path_common_root=pathlib.Path(env["DOT_LANDSCAPES"]),
         )
@@ -372,7 +215,7 @@ def compose_rustdeskserver(
         context=context,
         service_name=service_name_hbbs,
         landscape_id=env.get("LANDSCAPE", "default"),
-        domain_lan=env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+        domain_lan=config_engine.openstudiolandscapes__domain_lan,
     )
     # container_name_hbbs = "--".join(
     #     [service_name_hbbs, env.get("LANDSCAPE", "default")]
@@ -389,7 +232,7 @@ def compose_rustdeskserver(
         context=context,
         service_name=service_name_hbbr,
         landscape_id=env.get("LANDSCAPE", "default"),
-        domain_lan=env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+        domain_lan=config_engine.openstudiolandscapes__domain_lan,
     )
     # container_name_hbbr = "--".join(
     #     [service_name_hbbr, env.get("LANDSCAPE", "default")]
@@ -411,15 +254,15 @@ def compose_rustdeskserver(
             service_name_hbbs: {
                 "container_name": container_name_hbbs,
                 "hostname": host_name_hbbs,
-                "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
+                "domainname": config_engine.openstudiolandscapes__domain_lan,
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": DockerComposePolicies.RESTART_POLICY.UNLESS_STOPPED.value,
-                "image": "docker.io/rustdesk/rustdesk-server:latest",
+                "image": CONFIG.rustdeskserver_docker_image,
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbs),
                 "environment": {
-                    "ALWAYS_USE_RELAY": env["HBBS_ALWAYS_USE_RELAY"],
+                    "ALWAYS_USE_RELAY": CONFIG.rustdeskserver_HBBS_ALWAYS_USE_RELAY,
                 },
                 # "healthcheck": {
                 # },
@@ -432,10 +275,10 @@ def compose_rustdeskserver(
             service_name_hbbr: {
                 "container_name": container_name_hbbr,
                 "hostname": host_name_hbbr,
-                "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
+                "domainname": config_engine.openstudiolandscapes__domain_lan,
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": DockerComposePolicies.RESTART_POLICY.UNLESS_STOPPED.value,
-                "image": "rustdesk/rustdesk-server:latest",
+                "image": CONFIG.rustdeskserver_docker_image,
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbr),
@@ -457,7 +300,6 @@ def compose_rustdeskserver(
         metadata={
             "__".join(context.asset_key.path): MetadataValue.json(docker_dict),
             "docker_yaml": MetadataValue.md(f"```yaml\n{docker_yaml}\n```"),
-            # Todo: "cmd_docker_run": MetadataValue.path(cmd_list_to_str(cmd_docker_run)),
         },
     )
 
@@ -478,46 +320,6 @@ def compose_maps(
     ret = list(kwargs.values())
 
     context.log.info(ret)
-
-    yield Output(ret)
-
-    yield AssetMaterialization(
-        asset_key=context.asset_key,
-        metadata={
-            "__".join(context.asset_key.path): MetadataValue.json(ret),
-        },
-    )
-
-
-@asset(
-    **ASSET_HEADER,
-    ins={},
-)
-def cmd_extend(
-    context: AssetExecutionContext,
-) -> Generator[Output[List[Any]] | AssetMaterialization | Any, Any, None]:
-
-    ret = []
-
-    yield Output(ret)
-
-    yield AssetMaterialization(
-        asset_key=context.asset_key,
-        metadata={
-            "__".join(context.asset_key.path): MetadataValue.json(ret),
-        },
-    )
-
-
-@asset(
-    **ASSET_HEADER,
-    ins={},
-)
-def cmd_append(
-    context: AssetExecutionContext,
-) -> Generator[Output[Dict[str, List[Any]]] | AssetMaterialization | Any, Any, None]:
-
-    ret = {"cmd": [], "exclude_from_quote": []}
 
     yield Output(ret)
 
