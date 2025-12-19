@@ -1,7 +1,7 @@
 import copy
 import enum
 import pathlib
-from typing import Generator, Dict, List, Union
+from typing import Dict, Generator, List, Union
 
 import yaml
 from dagster import (
@@ -9,16 +9,24 @@ from dagster import (
     AssetIn,
     AssetKey,
     AssetMaterialization,
+    AssetsDefinition,
     MetadataValue,
     Output,
-    asset, AssetsDefinition,
+    asset,
 )
 from OpenStudioLandscapes.engine.common_assets.compose import get_compose
+from OpenStudioLandscapes.engine.common_assets.compose_scope import (
+    get_compose_scope_group__cmd,
+)
 from OpenStudioLandscapes.engine.common_assets.docker_compose_graph import (
     get_docker_compose_graph,
 )
+from OpenStudioLandscapes.engine.common_assets.feature import get_feature__CONFIG
 from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out_v2
-from OpenStudioLandscapes.engine.common_assets.group_in import get_feature_in, get_feature_in_parent
+from OpenStudioLandscapes.engine.common_assets.group_in import (
+    get_feature_in,
+    get_feature_in_parent,
+)
 from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
 from OpenStudioLandscapes.engine.config.models import ConfigEngine
 from OpenStudioLandscapes.engine.constants import *
@@ -29,14 +37,6 @@ from OpenStudioLandscapes.engine.utils.docker.compose_dicts import *
 # from OpenStudioLandscapes.RustDeskServer import dist
 from OpenStudioLandscapes.RustDeskServer.config.models import CONFIG_STR, Config
 from OpenStudioLandscapes.RustDeskServer.constants import *
-
-from OpenStudioLandscapes.engine.common_assets.compose_scope import (
-get_compose_scope_group__cmd,
-)
-
-from OpenStudioLandscapes.engine.common_assets.feature import (
-get_feature__CONFIG
-)
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
 yaml.SafeDumper.add_multi_representer(
