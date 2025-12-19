@@ -5,7 +5,7 @@
 1. [Feature: OpenStudioLandscapes-RustDeskServer](#feature-openstudiolandscapes-rustdeskserver)
    1. [Brief](#brief)
    2. [Configuration](#configuration)
-2. [Official Resources](#official-resources)
+2. [External Resources](#external-resources)
    1. [Rust Desk Server (OSS)](#rust-desk-server-oss)
       1. [RustDesk Setup](#rustdesk-setup)
 3. [Community](#community)
@@ -93,7 +93,7 @@ key_prefixes:
 
 ***
 
-# Official Resources
+# External Resources
 
 [![Logo RustDesk ](https://raw.githubusercontent.com/rustdesk/rustdesk/refs/heads/master/res/logo-header.svg)](https://rustdesk.com/)
 
@@ -277,4 +277,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 16:47:55 UTC**
+Last changed: **2025-12-19 21:11:36 UTC**
