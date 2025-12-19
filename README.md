@@ -4,19 +4,19 @@
 
 1. [Feature: OpenStudioLandscapes-RustDeskServer](#feature-openstudiolandscapes-rustdeskserver)
    1. [Brief](#brief)
-   2. [Requirements](#requirements)
-   3. [Install](#install)
-      1. [This Feature](#this-feature)
-   4. [Add to OpenStudioLandscapes](#add-to-openstudiolandscapes)
-   5. [Testing](#testing)
-      1. [pre-commit](#pre-commit)
-      2. [nox](#nox)
-   6. [Variables](#variables)
-      1. [Feature Configs](#feature-configs)
-2. [Community](#community)
-3. [Official Resources](#official-resources)
+   2. [Configuration](#configuration)
+   3. [Official Resources](#official-resources)
+2. [Official Resources](#official-resources)
    1. [Rust Desk Server (OSS)](#rust-desk-server-oss)
       1. [RustDesk Setup](#rustdesk-setup)
+3. [Community](#community)
+4. [Technical Reference](#technical-reference)
+   1. [Requirements](#requirements)
+   2. [Install](#install)
+      1. [This Feature](#this-feature)
+   3. [Testing](#testing)
+      1. [pre-commit](#pre-commit)
+      2. [nox](#nox)
 
 ***
 
@@ -30,183 +30,71 @@ This `README.md` was dynamically created with [OpenStudioLandscapesUtil-ReadmeGe
 
 This is an extension to the OpenStudioLandscapes ecosystem. The full documentation of OpenStudioLandscapes is available [here](https://github.com/michimussato/OpenStudioLandscapes).
 
-You feel like writing your own Feature? Go and check out the [OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template).
+> [!NOTE]
+> 
+> You feel like writing your own Feature? Go and check out the 
+> [OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template).
 
-## Requirements
+## Configuration
 
-- `python-3.11`
-- `OpenStudioLandscapes`
+OpenStudioLandscapes will search for a local config store. The default location is `~/.config/OpenStudioLandscapes/config-store/` but you can specify a different location if you need to.
 
-## Install
+A local config store location will be created if it doesn't exist, together with the `config.yml` files for each individual Feature.
 
-### This Feature
+> [!TIP]
+> 
+> The config store root will be initialized as a local Git
+> controlled repository. This makes it easy to track changes
+> you made to the `config.yml`.
 
-Clone this repository into `OpenStudioLandscapes/.features`:
+> [!TIP]
+> 
+> To specify a config store location different than
+> the default, you can do so be setting the environment variable
+> `OPENSTUDIOLANDSCAPES__CONFIGSTORE_ROOT`:
+> 
+> ```shell
+> OPENSTUDIOLANDSCAPES__CONFIGSTORE_ROOT="~/.config/OpenStudioLandscapes/my-custom-config-store"
+> ```
 
-```shell
-# cd .features
-git clone https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer.git
+The following settings are available in `OpenStudioLandscapes-RustDeskServer` and are accessible throughout the [`OpenStudioLandscapes-RustDeskServer`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/OpenStudioLandscapes/RustDeskServer/config/models.py) package.
+
+```yaml
+# Base Information
+group_name: "OpenStudioLandscapes_RustDeskServer"
+key_prefixes:
+  - "OpenStudioLandscapes_RustDeskServer"
+
+#compose_scope: "default"
+
+#rustdeskserver_docker_image: "docker.io/rustdesk/rustdesk-server:latest"
+
+# hbbs
+#rustdeskserver_HBBS_ALWAYS_USE_RELAY: "Y"
+#rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: 21114  # Only in Pro version
+#rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: "21114/tcp"  # Only in Pro version
+#rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: 21115
+#rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: "21115/tcp"
+#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: 21116
+#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: "21116/tcp"
+#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: 21116
+#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: "21116/udp"
+#rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: 21118  # Can be disabled if web clients are not needed
+#rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: "21118/tcp"  # Can be disabled if web clients are not needed
+
+# hbbr
+#rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: 21117
+#rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: "21117/tcp"
+#rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21119  # Can be disabled if web clients are not needed
+#rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: "21119/tcp"  # Can be disabled if web clients are not needed
+
+#rustdeskserver_data_store: "{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/data"
+
 ```
-
-Create `venv`:
-
-```shell
-# cd .features/OpenStudioLandscapes-RustDeskServer
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip setuptools
-```
-
-Configure `venv`:
-
-```shell
-# cd .features/OpenStudioLandscapes-RustDeskServer
-pip install -e "../../[dev]"
-pip install -e ".[dev]"
-```
-
-For more info see [VCS Support of pip](https://pip.pypa.io/en/stable/topics/vcs-support/).
-
-## Add to OpenStudioLandscapes
-
-Add the following code to `OpenStudioLandscapes.engine.features.FEATURES`:
-
-```python
-FEATURES.update(
-    "OpenStudioLandscapes-RustDeskServer": {
-        "enabled": True|False,
-        # - from ENVIRONMENT VARIABLE (.env):
-        #   "enabled": get_bool_env("ENV_VAR")
-        # - combined:
-        #   "enabled": True|False or get_bool_env(
-        #       "OPENSTUDIOLANDSCAPES__ENABLE_FEATURE_OPENSTUDIOLANDSCAPES_RUSTDESKSERVER"
-        #   )
-        "module": "OpenStudioLandscapes.RustDeskServer.definitions",
-        "compose_scope": ComposeScope.DEFAULT,
-        "feature_config": OpenStudioLandscapesConfig.DEFAULT,
-    }
-)
-```
-
-## Testing
-
-### pre-commit
-
-- https://pre-commit.com
-- https://pre-commit.com/hooks.html
-
-```shell
-pre-commit install
-```
-
-### nox
-
-#### Generate Report
-
-```shell
-nox --no-error-on-missing-interpreters --report .nox/nox-report.json
-```
-
-#### Re-Generate this README
-
-```shell
-nox -v --add-timestamp --session readme
-```
-
-#### Generate Sphinx Documentation
-
-```shell
-nox -v --add-timestamp --session docs
-```
-
-#### pylint
-
-```shell
-nox -v --add-timestamp --session lint
-```
-
-##### pylint: disable=redefined-outer-name
-
-- [`W0621`](https://pylint.pycqa.org/en/latest/user_guide/messages/warning/redefined-outer-name.html): Due to Dagsters way of piping arguments into assets.
-
-#### SBOM
-
-Acronym for Software Bill of Materials
-
-```shell
-nox -v --add-timestamp --session sbom
-```
-
-We create the following SBOMs:
-
-- [`cyclonedx-bom`](https://pypi.org/project/cyclonedx-bom/)
-- [`pipdeptree`](https://pypi.org/project/pipdeptree/) (Dot)
-- [`pipdeptree`](https://pypi.org/project/pipdeptree/) (Mermaid)
-
-SBOMs for the different Python interpreters defined in [`.noxfile.VERSIONS`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/noxfile.py) will be created in the [`.sbom`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/.sbom) directory of this repository.
-
-- `cyclone-dx`
-- `pipdeptree` (Dot)
-- `pipdeptree` (Mermaid)
-
-Currently, the following Python interpreters are enabled for testing:
-
-- `python3.11`
-
-## Variables
-
-The following variables are being declared in `OpenStudioLandscapes.RustDeskServer.constants` and are accessible throughout the [`OpenStudioLandscapes-RustDeskServer`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/src/OpenStudioLandscapes/RustDeskServer/constants.py) package.
-
-| Variable           | Type   |
-| :----------------- | :----- |
-| `DOCKER_USE_CACHE` | `bool` |
-| `ASSET_HEADER`     | `dict` |
-| `FEATURE_CONFIGS`  | `dict` |
-
-### Feature Configs
-
-#### Feature Config: default
-
-| Variable                                            | Type   | Value                                                              |
-| :-------------------------------------------------- | :----- | :----------------------------------------------------------------- |
-| `DOCKER_USE_CACHE`                                  | `bool` | `False`                                                            |
-| `HBBS_ALWAYS_USE_RELAY`                             | `str`  | `Y`                                                                |
-| `HBBS_WEB_CONSOLE_PORT_HOST`                        | `str`  | `21114`                                                            |
-| `HBBS_WEB_CONSOLE_PORT_CONTAINER`                   | `str`  | `21114/tcp`                                                        |
-| `HBBS_NAT_TYPE_TEST_PORT_HOST`                      | `str`  | `21115`                                                            |
-| `HBBS_NAT_TYPE_TEST_PORT_CONTAINER`                 | `str`  | `21115/tcp`                                                        |
-| `HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST`      | `str`  | `21116`                                                            |
-| `HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER` | `str`  | `21116/tcp`                                                        |
-| `HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST`      | `str`  | `21116`                                                            |
-| `HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER` | `str`  | `21116/udp`                                                        |
-| `HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST`                | `str`  | `21118`                                                            |
-| `HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER`           | `str`  | `21118/tcp`                                                        |
-| `HBBR_RELAY_SERVICES_PORT_HOST`                     | `str`  | `21117`                                                            |
-| `HBBR_RELAY_SERVICES_PORT_CONTAINER`                | `str`  | `21117/tcp`                                                        |
-| `HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER`           | `str`  | `21119`                                                            |
-| `HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST`                | `str`  | `21119/tcp`                                                        |
-| `DATA_STORE`                                        | `str`  | `{DOT_LANDSCAPES}/{LANDSCAPE}/RustDeskServer__RustDeskServer/data` |
-
-# Community
-
-| Feature                              | GitHub                                                                                                                                       | Discord                                                                 |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| OpenStudioLandscapes                 | [https://github.com/michimussato/OpenStudioLandscapes](https://github.com/michimussato/OpenStudioLandscapes)                                 | [# openstudiolandscapes-general](https://discord.gg/F6bDRWsHac)         |
-| OpenStudioLandscapes-Ayon            | [https://github.com/michimussato/OpenStudioLandscapes-Ayon](https://github.com/michimussato/OpenStudioLandscapes-Ayon)                       | [# openstudiolandscapes-ayon](https://discord.gg/gd6etWAF3v)            |
-| OpenStudioLandscapes-Dagster         | [https://github.com/michimussato/OpenStudioLandscapes-Dagster](https://github.com/michimussato/OpenStudioLandscapes-Dagster)                 | [# openstudiolandscapes-dagster](https://discord.gg/jwB3DwmKvs)         |
-| OpenStudioLandscapes-Flamenco        | [https://github.com/michimussato/OpenStudioLandscapes-Flamenco](https://github.com/michimussato/OpenStudioLandscapes-Flamenco)               | [# openstudiolandscapes-flamenco](https://discord.gg/EPrX5fzBCf)        |
-| OpenStudioLandscapes-Flamenco-Worker | [https://github.com/michimussato/OpenStudioLandscapes-Flamenco-Worker](https://github.com/michimussato/OpenStudioLandscapes-Flamenco-Worker) | [# openstudiolandscapes-flamenco-worker](https://discord.gg/Sa2zFqSc4p) |
-| OpenStudioLandscapes-Kitsu           | [https://github.com/michimussato/OpenStudioLandscapes-Kitsu](https://github.com/michimussato/OpenStudioLandscapes-Kitsu)                     | [# openstudiolandscapes-kitsu](https://discord.gg/6cc6mkReJ7)           |
-| OpenStudioLandscapes-RustDeskServer  | [https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer)   | [# openstudiolandscapes-rustdeskserver](https://discord.gg/nJ8Ffd2xY3)  |
-| OpenStudioLandscapes-Template        | [https://github.com/michimussato/OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template)               | [# openstudiolandscapes-template](https://discord.gg/J59GYp3Wpy)        |
-| OpenStudioLandscapes-VERT            | [https://github.com/michimussato/OpenStudioLandscapes-VERT](https://github.com/michimussato/OpenStudioLandscapes-VERT)                       | [# openstudiolandscapes-twingate](https://discord.gg/FYaFRUwbYr)        |
-
-To follow up on the previous LinkedIn publications, visit:
-
-- [OpenStudioLandscapes on LinkedIn](https://www.linkedin.com/company/106731439/).
-- [Search for tag #OpenStudioLandscapes on LinkedIn](https://www.linkedin.com/search/results/all/?keywords=%23openstudiolandscapes).
 
 ***
+
+## Official Resources
 
 # Official Resources
 
@@ -270,3 +158,126 @@ Your RustDesk screen should now display a different message and you have success
 ![RustDesk Local Relay Server Ready ](media/images/ready.png)
 
 Repeat this procedure for all your clients and you are good to go to connect from one client to another using your own RustDesk Relay Server.
+
+***
+
+# Community
+
+| Feature                              | GitHub                                                                                                                                       | Discord                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| OpenStudioLandscapes                 | [https://github.com/michimussato/OpenStudioLandscapes](https://github.com/michimussato/OpenStudioLandscapes)                                 | [# openstudiolandscapes-general](https://discord.gg/F6bDRWsHac)         |
+| OpenStudioLandscapes-Ayon            | [https://github.com/michimussato/OpenStudioLandscapes-Ayon](https://github.com/michimussato/OpenStudioLandscapes-Ayon)                       | [# openstudiolandscapes-ayon](https://discord.gg/gd6etWAF3v)            |
+| OpenStudioLandscapes-Dagster         | [https://github.com/michimussato/OpenStudioLandscapes-Dagster](https://github.com/michimussato/OpenStudioLandscapes-Dagster)                 | [# openstudiolandscapes-dagster](https://discord.gg/jwB3DwmKvs)         |
+| OpenStudioLandscapes-Flamenco        | [https://github.com/michimussato/OpenStudioLandscapes-Flamenco](https://github.com/michimussato/OpenStudioLandscapes-Flamenco)               | [# openstudiolandscapes-flamenco](https://discord.gg/EPrX5fzBCf)        |
+| OpenStudioLandscapes-Flamenco-Worker | [https://github.com/michimussato/OpenStudioLandscapes-Flamenco-Worker](https://github.com/michimussato/OpenStudioLandscapes-Flamenco-Worker) | [# openstudiolandscapes-flamenco-worker](https://discord.gg/Sa2zFqSc4p) |
+| OpenStudioLandscapes-Kitsu           | [https://github.com/michimussato/OpenStudioLandscapes-Kitsu](https://github.com/michimussato/OpenStudioLandscapes-Kitsu)                     | [# openstudiolandscapes-kitsu](https://discord.gg/6cc6mkReJ7)           |
+| OpenStudioLandscapes-RustDeskServer  | [https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer)   | [# openstudiolandscapes-rustdeskserver](https://discord.gg/nJ8Ffd2xY3)  |
+| OpenStudioLandscapes-Template        | [https://github.com/michimussato/OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template)               | [# openstudiolandscapes-template](https://discord.gg/J59GYp3Wpy)        |
+| OpenStudioLandscapes-VERT            | [https://github.com/michimussato/OpenStudioLandscapes-VERT](https://github.com/michimussato/OpenStudioLandscapes-VERT)                       | [# openstudiolandscapes-twingate](https://discord.gg/FYaFRUwbYr)        |
+
+To follow up on the previous LinkedIn publications, visit:
+
+- [OpenStudioLandscapes on LinkedIn](https://www.linkedin.com/company/106731439/).
+- [Search for tag #OpenStudioLandscapes on LinkedIn](https://www.linkedin.com/search/results/all/?keywords=%23openstudiolandscapes).
+
+***
+
+# Technical Reference
+
+## Requirements
+
+- `python-3.11`
+- `OpenStudioLandscapes`
+
+## Install
+
+### This Feature
+
+Clone this repository into `OpenStudioLandscapes/.features`:
+
+```shell
+# cd .features
+git clone https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer.git
+```
+
+Create `venv`:
+
+```shell
+# cd .features/OpenStudioLandscapes-RustDeskServer
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools
+```
+
+Configure `venv`:
+
+```shell
+# cd .features/OpenStudioLandscapes-RustDeskServer
+pip install -e "../../[dev]"
+pip install -e ".[dev]"
+```
+
+For more info see [VCS Support of pip](https://pip.pypa.io/en/stable/topics/vcs-support/).
+
+## Testing
+
+### pre-commit
+
+- https://pre-commit.com
+- https://pre-commit.com/hooks.html
+
+```shell
+pre-commit install
+```
+
+### nox
+
+#### Generate Report
+
+```shell
+nox --no-error-on-missing-interpreters --report .nox/nox-report.json
+```
+
+#### Re-Generate this README
+
+```shell
+nox -v --add-timestamp --session readme
+```
+
+#### pylint
+
+```shell
+nox -v --add-timestamp --session lint
+```
+
+##### pylint: disable=redefined-outer-name
+
+- [`W0621`](https://pylint.pycqa.org/en/latest/user_guide/messages/warning/redefined-outer-name.html): Due to Dagsters way of piping arguments into assets.
+
+#### SBOM
+
+Acronym for Software Bill of Materials
+
+```shell
+nox -v --add-timestamp --session sbom
+```
+
+We create the following SBOMs:
+
+- [`cyclonedx-bom`](https://pypi.org/project/cyclonedx-bom/)
+- [`pipdeptree`](https://pypi.org/project/pipdeptree/) (Dot)
+- [`pipdeptree`](https://pypi.org/project/pipdeptree/) (Mermaid)
+
+SBOMs for the different Python interpreters defined in [`.noxfile.VERSIONS`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/noxfile.py) will be created in the [`.sbom`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/.sbom) directory of this repository.
+
+- `cyclone-dx`
+- `pipdeptree` (Dot)
+- `pipdeptree` (Mermaid)
+
+Currently, the following Python interpreters are enabled for testing:
+
+- `python3.11`
+
+***
+
+Last changed: **2025-12-19 15:51:39 UTC**.
