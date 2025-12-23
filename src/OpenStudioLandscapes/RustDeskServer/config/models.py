@@ -12,8 +12,6 @@ from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
 
 from OpenStudioLandscapes.RustDeskServer import dist
 
-config_default = pathlib.Path(__file__).parent.joinpath("config_default.yml")
-
 
 # class UseRelay(enum.StrEnum):
 #     YES = "Y"
@@ -29,16 +27,17 @@ class Config(FeatureBaseModel):
 
     rustdeskserver_HBBS_ALWAYS_USE_RELAY: str = Field(
         default="Y",
-        description="Number of workers to simulate in parallel.",
-        # examples=[i.name for i in UseRelay],
+        examples=["Y", "N"],
     )
 
     rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: PositiveInt = Field(
         default=21114,
+        description="Only in Pro version.",
     )
 
     rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: str = Field(
         default="21114/tcp",
+        description="Only in Pro version.",
     )
 
     rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: PositiveInt = Field(
@@ -67,10 +66,12 @@ class Config(FeatureBaseModel):
 
     rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: PositiveInt = Field(
         default=21118,
+        description="Can be disabled if web clients are not needed.",
     )
 
     rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: str = Field(
         default="21118/tcp",
+        description="Can be disabled if web clients are not needed.",
     )
 
     rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: PositiveInt = Field(
@@ -83,10 +84,12 @@ class Config(FeatureBaseModel):
 
     rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: PositiveInt = Field(
         default=21119,
+        description="Can be disabled if web clients are not needed.",
     )
 
     rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: str = Field(
         default="21119/tcp",
+        description="Can be disabled if web clients are not needed.",
     )
 
     rustdeskserver_data_store: pathlib.Path = Field(
