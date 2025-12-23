@@ -59,35 +59,331 @@ A local config store location will be created if it doesn't exist, together with
 The following settings are available in `OpenStudioLandscapes-RustDeskServer` and are accessible throughout the [`OpenStudioLandscapes-RustDeskServer`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/OpenStudioLandscapes/RustDeskServer/config/models.py) package.
 
 ```yaml
-# Base Information
-group_name: "OpenStudioLandscapes_RustDeskServer"
-key_prefixes:
-  - "OpenStudioLandscapes_RustDeskServer"
+# ===
+# env
+# ---
+#
+# Type: typing.Dict
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
 
-#compose_scope: "default"
 
-#rustdeskserver_docker_image: "docker.io/rustdesk/rustdesk-server:latest"
+# =============
+# config_engine
+# -------------
+#
+# Type: <class 'OpenStudioLandscapes.engine.config.models.ConfigEngine'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
 
-# hbbs
-#rustdeskserver_HBBS_ALWAYS_USE_RELAY: "Y"
-#rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: 21114  # Only in Pro version
-#rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: "21114/tcp"  # Only in Pro version
-#rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: 21115
-#rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: "21115/tcp"
-#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: 21116
-#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: "21116/tcp"
-#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: 21116
-#rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: "21116/udp"
-#rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: 21118  # Can be disabled if web clients are not needed
-#rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: "21118/tcp"  # Can be disabled if web clients are not needed
 
-# hbbr
-#rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: 21117
-#rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: "21117/tcp"
-#rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21119  # Can be disabled if web clients are not needed
-#rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: "21119/tcp"  # Can be disabled if web clients are not needed
+# =============
+# config_parent
+# -------------
+#
+# Type: <class 'OpenStudioLandscapes.engine.config.models.FeatureBaseModel'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
 
-#rustdeskserver_data_store: "{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/data"
+
+# ============
+# distribution
+# ------------
+#
+# Type: <class 'importlib.metadata.Distribution'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# ==========
+# group_name
+# ----------
+#
+# Type: <class 'str'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# ============
+# key_prefixes
+# ------------
+#
+# Type: typing.List[str]
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# =======
+# enabled
+# -------
+#
+# Type: <class 'bool'>
+# Base Class:
+#     Description:
+#         Whether the Feature is enabled or not.
+#     Default value:
+#         True
+
+
+# =============
+# compose_scope
+# -------------
+#
+# Type: <class 'str'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         default
+
+
+# ============
+# feature_name
+# ------------
+#
+# Type: <class 'str'>
+# Base Class:
+#     Description:
+#         The name of the feature. It is derived from the `OpenStudioLandscapes.<Feature>.dist` attribute.
+#     Default value:
+#         PydanticUndefined
+feature_name: OpenStudioLandscapes-RustDeskServer
+
+
+# ==============
+# docker_compose
+# --------------
+#
+# Type: <class 'pathlib.Path'>
+# Base Class:
+#     Description:
+#         The path to the `docker-compose.yml` file.
+#     Default value:
+#         {DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml
+
+
+# ===========================
+# rustdeskserver_docker_image
+# ---------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_docker_image: docker.io/rustdesk/rustdesk-server:latest
+
+
+# ====================================
+# rustdeskserver_HBBS_ALWAYS_USE_RELAY
+# ------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     Number of workers to simulate in parallel.
+# Examples:
+#     None
+rustdeskserver_HBBS_ALWAYS_USE_RELAY: Y
+
+
+# =========================================
+# rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST
+# -----------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: 21114
+
+
+# ==============================================
+# rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER
+# ----------------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: 21114/tcp
+
+
+# ===========================================
+# rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST
+# -------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: 21115
+
+
+# ================================================
+# rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER
+# ------------------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: 21115/tcp
+
+
+# ===========================================================
+# rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST
+# -----------------------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: 21116
+
+
+# ================================================================
+# rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER
+# ----------------------------------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: 21116/tcp
+
+
+# ===========================================================
+# rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST
+# -----------------------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: 21116
+
+
+# ================================================================
+# rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER
+# ----------------------------------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: 21116/udp
+
+
+# =================================================
+# rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST
+# -------------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: 21118
+
+
+# ======================================================
+# rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER
+# ------------------------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21118/tcp
+
+
+# ============================================
+# rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST
+# --------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: 21117
+
+
+# =================================================
+# rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER
+# -------------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: 21117/tcp
+
+
+# ======================================================
+# rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER
+# ------------------------------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21119
+
+
+# =================================================
+# rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST
+# -------------------------------------------------
+#
+# Type: <class 'str'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: 21119/tcp
+
+
+# =========================
+# rustdeskserver_data_store
+# -------------------------
+#
+# Type: <class 'pathlib.Path'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+rustdeskserver_data_store: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/data'
+
+
 
 ```
 
@@ -277,4 +573,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 21:11:36 UTC**
+Last changed: **2025-12-23 12:26:19 UTC**
