@@ -280,11 +280,11 @@ rustdeskserver_docker_image: docker.io/rustdesk/rustdesk-server:latest
 #
 # Type: <class 'str'>
 # Description:
-#     Number of workers to simulate in parallel.
+#     None
 # Required:
 #     False
 # Examples:
-#     None
+#     ['Y', 'N']
 rustdeskserver_HBBS_ALWAYS_USE_RELAY: Y
 
 
@@ -294,7 +294,7 @@ rustdeskserver_HBBS_ALWAYS_USE_RELAY: Y
 #
 # Type: <class 'int'>
 # Description:
-#     None
+#     Only in Pro version.
 # Required:
 #     False
 # Examples:
@@ -308,7 +308,7 @@ rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: 21114
 #
 # Type: <class 'str'>
 # Description:
-#     None
+#     Only in Pro version.
 # Required:
 #     False
 # Examples:
@@ -406,7 +406,7 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: 21116/udp
 #
 # Type: <class 'int'>
 # Description:
-#     None
+#     Can be disabled if web clients are not needed.
 # Required:
 #     False
 # Examples:
@@ -420,7 +420,7 @@ rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: 21118
 #
 # Type: <class 'str'>
 # Description:
-#     None
+#     Can be disabled if web clients are not needed.
 # Required:
 #     False
 # Examples:
@@ -462,7 +462,7 @@ rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: 21117/tcp
 #
 # Type: <class 'int'>
 # Description:
-#     None
+#     Can be disabled if web clients are not needed.
 # Required:
 #     False
 # Examples:
@@ -476,7 +476,7 @@ rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21119
 #
 # Type: <class 'str'>
 # Description:
-#     None
+#     Can be disabled if web clients are not needed.
 # Required:
 #     False
 # Examples:
@@ -687,4 +687,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 13:04:21 UTC**
+Last changed: **2025-12-23 13:35:03 UTC**
