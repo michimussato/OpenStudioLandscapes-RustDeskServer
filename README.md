@@ -65,10 +65,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: typing.Dict
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # =============
@@ -77,10 +84,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'OpenStudioLandscapes.engine.config.models.ConfigEngine'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # =============
@@ -89,10 +103,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'OpenStudioLandscapes.engine.config.models.FeatureBaseModel'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # ============
@@ -101,10 +122,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'importlib.metadata.Distribution'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # ==========
@@ -113,10 +141,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'str'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # ============
@@ -125,10 +160,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: typing.List[str]
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # =======
@@ -137,10 +179,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'bool'>
 # Base Class:
+#     Required: False
 #     Description:
 #         Whether the Feature is enabled or not.
 #     Default value:
 #         True
+# Description:
+#     Whether the Feature is enabled or not.
+# Required: False
+#     Whether the Feature is enabled or not.
+# Examples:
+#     None
 
 
 # =============
@@ -149,10 +198,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'str'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         default
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     ['default', 'license_server', 'worker']
 
 
 # ============
@@ -161,10 +217,17 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 #
 # Type: <class 'str'>
 # Base Class:
+#     Required: True
 #     Description:
 #         The name of the feature. It is derived from the `OpenStudioLandscapes.<Feature>.dist` attribute.
 #     Default value:
 #         PydanticUndefined
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 feature_name: OpenStudioLandscapes-RustDeskServer
 
 
@@ -174,10 +237,17 @@ feature_name: OpenStudioLandscapes-RustDeskServer
 #
 # Type: <class 'pathlib.Path'>
 # Base Class:
+#     Required: False
 #     Description:
 #         The path to the `docker-compose.yml` file.
 #     Default value:
 #         {DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml
+# Description:
+#     The path to the `docker-compose.yml` file.
+# Required: False
+#     The path to the `docker-compose.yml` file.
+# Examples:
+#     None
 
 
 # ===========================
@@ -185,7 +255,9 @@ feature_name: OpenStudioLandscapes-RustDeskServer
 # ---------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -197,7 +269,9 @@ rustdeskserver_docker_image: docker.io/rustdesk/rustdesk-server:latest
 # ------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     Number of workers to simulate in parallel.
+# Required: False
 #     Number of workers to simulate in parallel.
 # Examples:
 #     None
@@ -209,7 +283,9 @@ rustdeskserver_HBBS_ALWAYS_USE_RELAY: Y
 # -----------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -221,7 +297,9 @@ rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: 21114
 # ----------------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -233,7 +311,9 @@ rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: 21114/tcp
 # -------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -245,7 +325,9 @@ rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: 21115
 # ------------------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -257,7 +339,9 @@ rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: 21115/tcp
 # -----------------------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -269,7 +353,9 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: 21116
 # ----------------------------------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -281,7 +367,9 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: 21116/tcp
 # -----------------------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -293,7 +381,9 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: 21116
 # ----------------------------------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -305,7 +395,9 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: 21116/udp
 # -------------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -317,7 +409,9 @@ rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: 21118
 # ------------------------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -329,7 +423,9 @@ rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21118/tcp
 # --------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -341,7 +437,9 @@ rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: 21117
 # -------------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -353,7 +451,9 @@ rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: 21117/tcp
 # ------------------------------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -365,7 +465,9 @@ rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21119
 # -------------------------------------------------
 #
 # Type: <class 'str'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -377,7 +479,9 @@ rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: 21119/tcp
 # -------------------------
 #
 # Type: <class 'pathlib.Path'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -573,4 +677,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 12:26:19 UTC**
+Last changed: **2025-12-23 12:48:40 UTC**
