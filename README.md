@@ -610,9 +610,11 @@ Install into OpenStudioLandscapes `venv` (`./OpenStudioLandscapes/.venv`):
 
 ```shell
 source .venv/bin/activate
-python -m pip install --upgrade pip setuptools
-pip install -e "./.features/OpenStudioLandscapes-RustDeskServer[dev]"
-pip install -e ".[dev]"
+# python -m pip install --upgrade pip setuptools
+# the following removes the `openstudiolandscapes` executable for now (will be fixed soon)
+pip install -e "./.features/OpenStudioLandscapes-RustDeskServer"
+# so, re-install `OpenStudioLandscapes` engine:
+pip install -e "."
 ```
 
 For more info see [VCS Support of pip](https://pip.pypa.io/en/stable/topics/vcs-support/).
@@ -678,4 +680,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-25 14:35:04 UTC**
+Last changed: **2025-12-25 16:28:24 UTC**
