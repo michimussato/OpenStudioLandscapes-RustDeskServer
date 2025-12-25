@@ -1,4 +1,5 @@
 import pathlib
+from typing import List
 
 from dagster import get_dagster_logger
 from pydantic import (
@@ -10,7 +11,7 @@ LOGGER = get_dagster_logger(__name__)
 from OpenStudioLandscapes.engine.config.str_gen import get_config_str
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
 
-from OpenStudioLandscapes.RustDeskServer import dist
+from OpenStudioLandscapes.RustDeskServer import dist, constants
 
 
 # class UseRelay(enum.StrEnum):
@@ -20,6 +21,10 @@ from OpenStudioLandscapes.RustDeskServer import dist
 
 class Config(FeatureBaseModel):
     feature_name: str = dist.name
+
+    group_name: str = constants.ASSET_HEADER["group_name"]
+
+    key_prefixes: List[str] = constants.ASSET_HEADER["key_prefix"]
 
     rustdeskserver_docker_image: str = Field(
         default="docker.io/rustdesk/rustdesk-server:latest",
@@ -35,8 +40,8 @@ class Config(FeatureBaseModel):
         description="Only in Pro version.",
     )
 
-    rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: str = Field(
-        default="21114/tcp",
+    rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: PositiveInt = Field(
+        default=21114,
         description="Only in Pro version.",
     )
 
@@ -44,24 +49,24 @@ class Config(FeatureBaseModel):
         default=21115,
     )
 
-    rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: str = Field(
-        default="21115/tcp",
+    rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: PositiveInt = Field(
+        default=21115,
     )
 
     rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: PositiveInt = Field(
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: str = Field(
-        default="21116/tcp",
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: PositiveInt = Field(
+        default=21116,
     )
 
     rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: PositiveInt = Field(
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: str = Field(
-        default="21116/udp",
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: PositiveInt = Field(
+        default=21116,
     )
 
     rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: PositiveInt = Field(
@@ -69,8 +74,8 @@ class Config(FeatureBaseModel):
         description="Can be disabled if web clients are not needed.",
     )
 
-    rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: str = Field(
-        default="21118/tcp",
+    rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: PositiveInt = Field(
+        default=21118,
         description="Can be disabled if web clients are not needed.",
     )
 
@@ -78,8 +83,8 @@ class Config(FeatureBaseModel):
         default=21117,
     )
 
-    rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: int = Field(
-        default="21117/tcp",
+    rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: PositiveInt = Field(
+        default=21117,
     )
 
     rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: PositiveInt = Field(
@@ -87,8 +92,8 @@ class Config(FeatureBaseModel):
         description="Can be disabled if web clients are not needed.",
     )
 
-    rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: str = Field(
-        default="21119/tcp",
+    rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: PositiveInt = Field(
+        default=21119,
         description="Can be disabled if web clients are not needed.",
     )
 

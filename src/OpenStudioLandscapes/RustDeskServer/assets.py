@@ -160,17 +160,17 @@ def compose_rustdeskserver(
         network_dict = {"networks": list(compose_networks.get("networks", {}).keys())}
         ports_dict_hbbs = {
             "ports": [
-                f"{CONFIG.rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER}",
-                f"{CONFIG.rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER}",
-                f"{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER}",
-                f"{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER}",
-                f"{CONFIG.rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER}",
+                f"{CONFIG.rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER}/tcp",
+                f"{CONFIG.rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER}/tcp",
+                f"{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER}/tcp",
+                f"{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER}/udp",
+                f"{CONFIG.rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST}:{CONFIG.rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER}/tcp",
             ]
         }
         ports_dict_hbbr = {
             "ports": [
-                f"{CONFIG.rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST}:{CONFIG.rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER}",
-                f"{CONFIG.rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER}:{CONFIG.rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST}",
+                f"{CONFIG.rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST}:{CONFIG.rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER}/tcp",
+                f"{CONFIG.rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER}:{CONFIG.rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST}/tcp",
             ]
         }
     elif "network_mode" in compose_networks:
