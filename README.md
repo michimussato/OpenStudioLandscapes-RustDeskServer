@@ -146,17 +146,18 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 # Type: <class 'str'>
 # Base Class Info:
 #     Required:
-#         False
+#         True
 #     Description:
-#         None
+#         Dagster Group name. This will represent the group node name. See https://docs.dagster.io/api/dagster/assets for more information
 #     Default value:
-#         None
+#         PydanticUndefined
 # Description:
 #     None
 # Required:
 #     False
 # Examples:
 #     None
+group_name: OpenStudioLandscapes_RustDeskServer
 
 
 # ============
@@ -166,17 +167,19 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 # Type: typing.List[str]
 # Base Class Info:
 #     Required:
-#         False
+#         True
 #     Description:
-#         None
+#         Dagster Asset key prefixes. This will be reflected in the nesting (directory structure) of the Asset. See https://docs.dagster.io/api/dagster/assets for more information
 #     Default value:
-#         None
+#         PydanticUndefined
 # Description:
 #     None
 # Required:
 #     False
 # Examples:
 #     None
+key_prefixes:
+- OpenStudioLandscapes_RustDeskServer
 
 
 # =======
@@ -306,14 +309,14 @@ rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: 21114
 # rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER
 # ----------------------------------------------
 #
-# Type: <class 'str'>
+# Type: <class 'int'>
 # Description:
 #     Only in Pro version.
 # Required:
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: 21114/tcp
+rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: 21114
 
 
 # ===========================================
@@ -334,14 +337,14 @@ rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: 21115
 # rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER
 # ------------------------------------------------
 #
-# Type: <class 'str'>
+# Type: <class 'int'>
 # Description:
 #     None
 # Required:
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: 21115/tcp
+rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: 21115
 
 
 # ===========================================================
@@ -362,14 +365,14 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: 21116
 # rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER
 # ----------------------------------------------------------------
 #
-# Type: <class 'str'>
+# Type: <class 'int'>
 # Description:
 #     None
 # Required:
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: 21116/tcp
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: 21116
 
 
 # ===========================================================
@@ -390,14 +393,14 @@ rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: 21116
 # rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER
 # ----------------------------------------------------------------
 #
-# Type: <class 'str'>
+# Type: <class 'int'>
 # Description:
 #     None
 # Required:
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: 21116/udp
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: 21116
 
 
 # =================================================
@@ -418,14 +421,14 @@ rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: 21118
 # rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER
 # ------------------------------------------------------
 #
-# Type: <class 'str'>
+# Type: <class 'int'>
 # Description:
 #     Can be disabled if web clients are not needed.
 # Required:
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21118/tcp
+rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21118
 
 
 # ============================================
@@ -453,7 +456,7 @@ rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: 21117
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: 21117/tcp
+rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: 21117
 
 
 # ======================================================
@@ -474,14 +477,14 @@ rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: 21119
 # rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST
 # -------------------------------------------------
 #
-# Type: <class 'str'>
+# Type: <class 'int'>
 # Description:
 #     Can be disabled if web clients are not needed.
 # Required:
 #     False
 # Examples:
 #     None
-rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: 21119/tcp
+rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: 21119
 
 
 # =========================
@@ -675,4 +678,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 22:40:09 UTC**
+Last changed: **2025-12-25 14:28:36 UTC**
