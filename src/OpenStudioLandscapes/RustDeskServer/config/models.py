@@ -3,16 +3,16 @@ from typing import List
 
 from dagster import get_dagster_logger
 from pydantic import (
-    Field, PositiveInt,
+    Field,
+    PositiveInt,
 )
 
 LOGGER = get_dagster_logger(__name__)
 
-from OpenStudioLandscapes.engine.config.str_gen import get_config_str
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
+from OpenStudioLandscapes.engine.config.str_gen import get_config_str
 
-from OpenStudioLandscapes.RustDeskServer import dist, constants
-
+from OpenStudioLandscapes.RustDeskServer import constants, dist
 
 # class UseRelay(enum.StrEnum):
 #     YES = "Y"
@@ -57,16 +57,20 @@ class Config(FeatureBaseModel):
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: PositiveInt = Field(
-        default=21116,
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: PositiveInt = (
+        Field(
+            default=21116,
+        )
     )
 
     rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: PositiveInt = Field(
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: PositiveInt = Field(
-        default=21116,
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: PositiveInt = (
+        Field(
+            default=21116,
+        )
     )
 
     rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: PositiveInt = Field(
@@ -124,4 +128,3 @@ class Config(FeatureBaseModel):
 CONFIG_STR = get_config_str(
     Config=Config,
 )
-
