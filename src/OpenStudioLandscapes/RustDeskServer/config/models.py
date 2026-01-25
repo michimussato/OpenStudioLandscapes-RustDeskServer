@@ -113,7 +113,7 @@ class Config(FeatureBaseModel):
             raise KeyError("`env` is `None`.")
         LOGGER.debug(f"Expanding {self.rustdeskserver_data_store}...")
         ret = pathlib.Path(
-            self.rustdeskserver_data_store.expanduser()
+            self.rustdeskserver_data_store.expanduser()  # pylint: disable=E1101
             .as_posix()
             .format(
                 **{
