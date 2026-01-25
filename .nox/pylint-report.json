@@ -624,19 +624,6 @@
         "message-id": "C0116"
     },
     {
-        "type": "error",
-        "module": "OpenStudioLandscapes.RustDeskServer.config.models",
-        "obj": "Config.rustdeskserver_data_store_expanded",
-        "line": 116,
-        "column": 12,
-        "endLine": 116,
-        "endColumn": 53,
-        "path": "src/OpenStudioLandscapes/RustDeskServer/config/models.py",
-        "symbol": "no-member",
-        "message": "Instance of 'FieldInfo' has no 'expanduser' member",
-        "message-id": "E1101"
-    },
-    {
         "type": "convention",
         "module": "OpenStudioLandscapes.RustDeskServer.doc.readme",
         "obj": "",
