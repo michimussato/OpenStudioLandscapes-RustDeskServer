@@ -207,9 +207,12 @@ def compose_rustdeskserver(
         )
 
     volumes_dict = {
-        "volumes": [
-            *_volume_relative,
-        ],
+        "volumes": list(
+            {
+                *_volume_relative,
+                *config_engine.global_bind_volumes,
+            }
+        ),
     }
 
     service_name_hbbs = "hbbs"
@@ -265,6 +268,7 @@ def compose_rustdeskserver(
                 **copy.deepcopy(ports_dict_hbbs),
                 "environment": {
                     "ALWAYS_USE_RELAY": CONFIG.rustdeskserver_HBBS_ALWAYS_USE_RELAY,
+                    **config_engine.global_environment_variables,
                 },
                 # "healthcheck": {
                 # },
@@ -284,6 +288,9 @@ def compose_rustdeskserver(
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbr),
+                "environment": {
+                    **config_engine.global_environment_variables,
+                },
                 # "environment": {
                 # },
                 # "healthcheck": {
