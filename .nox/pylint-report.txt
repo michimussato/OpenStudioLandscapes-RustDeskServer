@@ -49,10 +49,9 @@ src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0103: Module name "Rus
 ************* Module OpenStudioLandscapes.RustDeskServer.config.models
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:12:0: C0413: Import "from OpenStudioLandscapes.engine.config.models import FeatureBaseModel" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:13:0: C0413: Import "from OpenStudioLandscapes.engine.config.str_gen import get_config_str" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:15:0: C0413: Import "from OpenStudioLandscapes.RustDeskServer import constants, dist" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:22:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:110:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:14:0: C0413: Import "from OpenStudioLandscapes.RustDeskServer import constants, dist" should be placed at the top of the module (wrong-import-position)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:21:0: C0115: Missing class docstring (missing-class-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:109:4: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module OpenStudioLandscapes.RustDeskServer.doc.readme
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:25:0: C0301: Line too long (110/100) (line-too-long)
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:43:0: C0301: Line too long (103/100) (line-too-long)
@@ -80,5 +79,5 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:1:0: R0801: Similar lines 
                 Logo RustDesk\ (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.92/10 (previous run: 7.14/10, -0.22)
+Your code has been rated at 6.95/10 (previous run: 7.18/10, -0.23)
 

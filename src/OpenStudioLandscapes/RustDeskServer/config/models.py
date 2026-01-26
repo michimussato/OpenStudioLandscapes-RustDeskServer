@@ -125,4 +125,3 @@ class Config(FeatureBaseModel):
 
 
 CONFIG_STR = Config.get_docs()
-
