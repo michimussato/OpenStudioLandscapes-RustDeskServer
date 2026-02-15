@@ -268,7 +268,7 @@ def compose_rustdeskserver(
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbs),
                 "environment": {
-                    "TZ": CONFIG.tz,
+                    "TZ": config_engine.tz,
                     "ALWAYS_USE_RELAY": CONFIG.rustdeskserver_HBBS_ALWAYS_USE_RELAY,
                     **config_engine.global_environment_variables,
                     **CONFIG.local_environment_variables,
@@ -292,11 +292,10 @@ def compose_rustdeskserver(
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbr),
                 "environment": {
+                    "TZ": config_engine.tz,
                     **config_engine.global_environment_variables,
                     **CONFIG.local_environment_variables,
                 },
-                # "environment": {
-                # },
                 # "healthcheck": {
                 # },
                 "command": command_hbbr,
