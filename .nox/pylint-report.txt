@@ -79,5 +79,5 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:1:0: R0801: Similar lines 
                 Logo RustDesk\ (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.95/10 (previous run: 7.18/10, -0.23)
+Your code has been rated at 6.95/10 (previous run: 7.02/10, -0.06)
 
