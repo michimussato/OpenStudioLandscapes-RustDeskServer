@@ -41,6 +41,9 @@ src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:170:8: C2801: Unnecess
 ************* Module OpenStudioLandscapes.RustDeskServer.constants
 src/OpenStudioLandscapes/RustDeskServer/constants.py:9:1: W0511: Todo (fixme)
 src/OpenStudioLandscapes/RustDeskServer/constants.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module OpenStudioLandscapes.RustDeskServer._definitions_with_upstream_specs
+src/OpenStudioLandscapes/RustDeskServer/_definitions_with_upstream_specs.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/OpenStudioLandscapes/RustDeskServer/_definitions_with_upstream_specs.py:2:0: E0611: No name 'group_out_base_spec' in module 'OpenStudioLandscapes.engine.base.assets' (no-name-in-module)
 ************* Module OpenStudioLandscapes.RustDeskServer.__init__
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:6:5: W0511: TODO: Import directly (no need for conditional) when `python_requires = >= 3.8` (fixme)
 ************* Module OpenStudioLandscapes.RustDeskServer
@@ -79,5 +82,5 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:1:0: R0801: Similar lines 
                 Logo RustDesk\ (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.95/10 (previous run: 7.01/10, -0.06)
+Your code has been rated at 6.75/10 (previous run: 6.42/10, +0.32)
 
