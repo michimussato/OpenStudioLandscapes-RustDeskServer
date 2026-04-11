@@ -8,6 +8,7 @@
       1. [Clone and Install](#clone-and-install)
    3. [Configure](#configure)
       1. [Default Configuration](#default-configuration)
+   4. [Local Development](#local-development)
 2. [External Resources](#external-resources)
    1. [Rust Desk Server (OSS)](#rust-desk-server-oss)
       1. [RustDesk Setup](#rustdesk-setup)
@@ -40,7 +41,6 @@ source .venv/bin/activate
 openstudiolandscapes clone-feature --repo=https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer.git
 deactivate
 # Check the resulting console output for installation instructions
-
 ```
 
 ### Clone and Install
@@ -51,7 +51,6 @@ source .venv/bin/activate
 openstudiolandscapes clone-feature --repo=https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer.git \
     && pip install --editable ./.features/OpenStudioLandscapes-RustDeskServer
 deactivate
-
 ```
 
 For more info on `pip` see [VCS Support of `pip`](https://pip.pypa.io/en/stable/topics/vcs-support/).
@@ -78,7 +77,6 @@ A local config store location will be created if it doesn't exist, together with
 The following settings are available in `OpenStudioLandscapes-RustDeskServer` and are based on [`OpenStudioLandscapes-RustDeskServer/tree/main/OpenStudioLandscapes/RustDeskServer/config/models.py`](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer/tree/main/OpenStudioLandscapes/RustDeskServer/config/models.py).
 
 ### Default Configuration
-
 
 <details open>
 <summary><code>config.yml</code></summary>
@@ -547,9 +545,19 @@ rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: 21119
 rustdeskserver_data_store: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/data'
 ```
 
-
 </details>
 
+
+## Local Development
+
+```shell
+cd ./.features/OpenStudioLandscapes-RustDeskServer
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip setuptools setuptools_scm wheel
+pip install --editable .[dev]
+dagster dev --workspace workspace.yaml
+```
 
 ***
 
@@ -648,4 +656,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-04-03 02:49:04 UTC**
+Last changed: **2026-04-11 01:58:21 UTC**
