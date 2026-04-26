@@ -4,8 +4,8 @@ from typing import List
 from dagster import get_dagster_logger
 from pydantic import (
     Field,
-    PositiveInt,
-    computed_field,
+    # PositiveInt,
+    # computed_field,
 )
 
 LOGGER = get_dagster_logger(__name__)
@@ -35,68 +35,68 @@ class Config(FeatureBaseModel):
         examples=["Y", "N"],
     )
 
-    rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST: int = Field(
         default=21114,
         description="Only in Pro version.",
     )
 
-    rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: PositiveInt = Field(
+    rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER: int = Field(
         default=21114,
         description="Only in Pro version.",
     )
 
-    rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST: int = Field(
         default=21115,
     )
 
-    rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: PositiveInt = Field(
+    rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER: int = Field(
         default=21115,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST: int = Field(
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: PositiveInt = (
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: int = (
         Field(
             default=21116,
         )
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: int = Field(
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: PositiveInt = (
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: int = (
         Field(
             default=21116,
         )
     )
 
-    rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: int = Field(
         default=21118,
         description="Can be disabled if web clients are not needed.",
     )
 
-    rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: PositiveInt = Field(
+    rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: int = Field(
         default=21118,
         description="Can be disabled if web clients are not needed.",
     )
 
-    rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST: int = Field(
         default=21117,
     )
 
-    rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: PositiveInt = Field(
+    rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER: int = Field(
         default=21117,
     )
 
-    rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: PositiveInt = Field(
+    rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER: int = Field(
         default=21119,
         description="Can be disabled if web clients are not needed.",
     )
 
-    rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: PositiveInt = Field(
+    rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST: int = Field(
         default=21119,
         description="Can be disabled if web clients are not needed.",
     )
@@ -106,7 +106,7 @@ class Config(FeatureBaseModel):
     )
 
     # EXPANDABLE PATHS
-    @computed_field
+    # @computed_field
     @property
     def rustdeskserver_data_store_expanded(self) -> pathlib.Path:
         LOGGER.debug(f"{self.env = }")
