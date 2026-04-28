@@ -55,20 +55,16 @@ class Config(FeatureBaseModel):
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: int = (
-        Field(
-            default=21116,
-        )
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER: int = Field(
+        default=21116,
     )
 
     rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST: int = Field(
         default=21116,
     )
 
-    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: int = (
-        Field(
-            default=21116,
-        )
+    rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER: int = Field(
+        default=21116,
     )
 
     rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST: int = Field(
