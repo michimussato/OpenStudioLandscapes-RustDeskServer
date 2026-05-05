@@ -2,12 +2,11 @@ import pathlib
 from typing import List
 
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
-from OpenStudioLandscapes.engine.logging.loggers import FEATURE_LOGGER as LOGGER
 from pydantic import (
     Field,
 )
 
-from OpenStudioLandscapes.RustDeskServer import constants, dist
+from OpenStudioLandscapes.RustDeskServer import constants, dist, LOGGER
 
 # class UseRelay(enum.StrEnum):
 #     YES = "Y"
