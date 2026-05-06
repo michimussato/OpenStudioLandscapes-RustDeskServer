@@ -48,14 +48,14 @@ src/OpenStudioLandscapes/RustDeskServer/__init__.py:6:5: W0511: TODO: Import dir
 ************* Module OpenStudioLandscapes.RustDeskServer
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0103: Module name "RustDeskServer" doesn't conform to snake_case naming style (invalid-name)
+src/OpenStudioLandscapes/RustDeskServer/__init__.py:25:4: E0401: Unable to import 'OpenStudioLandscapes.engine.logging.loggers' (import-error)
+src/OpenStudioLandscapes/RustDeskServer/__init__.py:25:4: E0611: No name 'logging' in module 'OpenStudioLandscapes.engine' (no-name-in-module)
 ************* Module OpenStudioLandscapes.RustDeskServer.config.models
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:5:0: E0401: Unable to import 'OpenStudioLandscapes.engine.logging.loggers' (import-error)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:5:0: E0611: No name 'logging' in module 'OpenStudioLandscapes.engine' (no-name-in-module)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:17:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:101:4: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:6:0: C0411: third party import "pydantic.Field" should be placed before first party imports "OpenStudioLandscapes.engine.config.models.FeatureBaseModel", "OpenStudioLandscapes.engine.logging.loggers.FEATURE_LOGGER"  (wrong-import-order)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:10:0: C0412: Imports from package OpenStudioLandscapes are not grouped (ungrouped-imports)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:16:0: C0115: Missing class docstring (missing-class-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:100:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:5:0: C0411: third party import "pydantic.Field" should be placed before first party import "OpenStudioLandscapes.engine.config.models.FeatureBaseModel"  (wrong-import-order)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:9:0: C0412: Imports from package OpenStudioLandscapes are not grouped (ungrouped-imports)
 ************* Module OpenStudioLandscapes.RustDeskServer.doc.readme
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:25:0: C0301: Line too long (110/100) (line-too-long)
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:43:0: C0301: Line too long (103/100) (line-too-long)
@@ -83,5 +83,5 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:1:0: R0801: Similar lines 
                 Logo RustDesk\ (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.54/10 (previous run: 6.51/10, +0.02)
+Your code has been rated at 6.55/10 (previous run: 6.53/10, +0.02)
 

@@ -6,7 +6,7 @@ from pydantic import (
     Field,
 )
 
-from OpenStudioLandscapes.RustDeskServer import constants, dist, LOGGER
+from OpenStudioLandscapes.RustDeskServer import LOGGER, constants, dist
 
 # class UseRelay(enum.StrEnum):
 #     YES = "Y"
