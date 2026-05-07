@@ -1,59 +1,28 @@
 ************* Module OpenStudioLandscapes.RustDeskServer.assets
-src/OpenStudioLandscapes/RustDeskServer/assets.py:165:0: C0301: Line too long (130/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:166:0: C0301: Line too long (134/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:167:0: C0301: Line too long (166/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:168:0: C0301: Line too long (166/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:169:0: C0301: Line too long (146/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:174:0: C0301: Line too long (136/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:175:0: C0301: Line too long (146/100) (line-too-long)
 src/OpenStudioLandscapes/RustDeskServer/assets.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:34:0: W0401: Wildcard import OpenStudioLandscapes.engine.constants (wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:35:0: W0401: Wildcard import OpenStudioLandscapes.engine.enums (wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:36:0: W0401: Wildcard import OpenStudioLandscapes.engine.utils (wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:37:0: W0401: Wildcard import OpenStudioLandscapes.engine.utils.docker.compose_dicts (wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:41:0: W0401: Wildcard import OpenStudioLandscapes.RustDeskServer.constants (wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:104:0: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:106:4: C0103: Argument name "CONFIG" doesn't conform to snake_case naming style (invalid-name)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:146:0: C0112: Empty function docstring (empty-docstring)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:148:4: C0103: Argument name "CONFIG" doesn't conform to snake_case naming style (invalid-name)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:146:0: R0914: Too many local variables (25/15) (too-many-locals)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:327:0: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:34:0: W0614: Unused import(s) LOGGER, DOCKER_PROGRESS, GROUP_BASE_ENV, KEY_BASE_ENV, ASSET_HEADER_BASE_ENV, GROUP_BASE, KEY_BASE, GROUP_VFX_PLATFORM, KEY_VFX_PLATFORM, ASSET_HEADER_VFX_PLATFORM, GROUP_LANDSCAPE_MAP, KEY_LANDSCAPE_MAP, ASSET_HEADER_LANDSCAPE_MAP, GROUP_DISTRIBUTABLE, KEY_DISTRIBUTABLE, ASSET_HEADER_DISTRIBUTABLE, get_dagster_logger, DAGSTER_DEFAULT_OUTPUT and FeatureBaseModel from wildcard import of OpenStudioLandscapes.engine.constants (unused-wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:35:0: W0614: Unused import(s) GroupIn, OpenStudioLandscapesConfig, FeatureVolumeType, ComposeCmdExclusion, DockerComposeNetworkMode, DockerComposeRestartPolicy and DockerComposeDependsOnPolicy from wildcard import of OpenStudioLandscapes.engine.enums (unused-wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:36:0: W0614: Unused import(s) datetime, json, os, shlex, time, git, requests, discovery, cmd_list_to_str, get_pip_install_str, get_apt_install_str, get_copy_str, get_wget_str, get_git_root, get_configs_root, get_data_root, get_bin_root, get_image_name, parse_docker_image_path, get_compose_scope, get_feature_config, expand_dict_vars, metadatavalues_from_dict, get_bool_env, get_str_env, get_all_compose_scopes, get_dynamic_ins, get_image_metadata, create_image, get_networks_dict, download_file, get_docker_run_cmd, Any, MutableMapping, Tuple, OpExecutionContext, DockerConfigModel, ComposeScopeException, OpenStudioLandscapesException, shutil, OpenStudioLandscapesDockerException, docker_build_cmd, docker_push_cmd, docker_do and submit_cmds from wildcard import of OpenStudioLandscapes.engine.utils (unused-wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:37:0: W0614: Unused import(s) DockerComposeServiceDefinition, DockerComposeNetworkDefinition, Optional, Required and TypedDict from wildcard import of OpenStudioLandscapes.engine.utils.docker.compose_dicts (unused-wildcard-import)
-src/OpenStudioLandscapes/RustDeskServer/assets.py:41:0: W0614: Unused import(s) GROUP, KEY and dist from wildcard import of OpenStudioLandscapes.RustDeskServer.constants (unused-wildcard-import)
+src/OpenStudioLandscapes/RustDeskServer/assets.py:109:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/RustDeskServer/assets.py:151:0: C0112: Empty function docstring (empty-docstring)
+src/OpenStudioLandscapes/RustDeskServer/assets.py:151:0: R0914: Too many local variables (25/15) (too-many-locals)
+src/OpenStudioLandscapes/RustDeskServer/assets.py:332:0: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module OpenStudioLandscapes.RustDeskServer.definitions
 src/OpenStudioLandscapes/RustDeskServer/definitions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-************* Module OpenStudioLandscapes.RustDeskServer.readme_feature
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:22:0: C0301: Line too long (110/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:40:0: C0301: Line too long (103/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:42:0: C0301: Line too long (119/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:43:0: C0301: Line too long (117/100) (line-too-long)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:18:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:79:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:105:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:137:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:150:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
-src/OpenStudioLandscapes/RustDeskServer/readme_feature.py:170:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
+src/OpenStudioLandscapes/RustDeskServer/definitions.py:12:0: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 ************* Module OpenStudioLandscapes.RustDeskServer.constants
 src/OpenStudioLandscapes/RustDeskServer/constants.py:9:1: W0511: Todo (fixme)
 src/OpenStudioLandscapes/RustDeskServer/constants.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module OpenStudioLandscapes.RustDeskServer._definitions_with_upstream_specs
 src/OpenStudioLandscapes/RustDeskServer/_definitions_with_upstream_specs.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module OpenStudioLandscapes.RustDeskServer.__init__
-src/OpenStudioLandscapes/RustDeskServer/__init__.py:6:5: W0511: TODO: Import directly (no need for conditional) when `python_requires = >= 3.8` (fixme)
+src/OpenStudioLandscapes/RustDeskServer/__init__.py:15:5: W0511: TODO: Import directly (no need for conditional) when `python_requires = >= 3.8` (fixme)
 ************* Module OpenStudioLandscapes.RustDeskServer
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0103: Module name "RustDeskServer" doesn't conform to snake_case naming style (invalid-name)
-src/OpenStudioLandscapes/RustDeskServer/__init__.py:25:4: E0401: Unable to import 'OpenStudioLandscapes.engine.logging.loggers' (import-error)
-src/OpenStudioLandscapes/RustDeskServer/__init__.py:25:4: E0611: No name 'logging' in module 'OpenStudioLandscapes.engine' (no-name-in-module)
 ************* Module OpenStudioLandscapes.RustDeskServer.config.models
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:16:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/RustDeskServer/config/models.py:100:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:20:0: C0115: Missing class docstring (missing-class-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:104:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:105:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src/OpenStudioLandscapes/RustDeskServer/config/models.py:108:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:5:0: C0411: third party import "pydantic.Field" should be placed before first party import "OpenStudioLandscapes.engine.config.models.FeatureBaseModel"  (wrong-import-order)
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:9:0: C0412: Imports from package OpenStudioLandscapes are not grouped (ungrouped-imports)
 ************* Module OpenStudioLandscapes.RustDeskServer.doc.readme
@@ -69,19 +38,7 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:108:8: C2801: Unnecessaril
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:140:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:153:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:173:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
-src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:1:0: R0801: Similar lines in 2 files
-==OpenStudioLandscapes.RustDeskServer.doc.readme:[14:23]
-==OpenStudioLandscapes.RustDeskServer.readme_feature:[11:20]
-        level=1,
-    )
-
-    # Logo
-
-    doc.add_paragraph(
-        snakemd.Inline(
-            text=textwrap.dedent("""\
-                Logo RustDesk\ (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.55/10 (previous run: 6.53/10, +0.02)
+Your code has been rated at 8.16/10 (previous run: 7.99/10, +0.17)
 

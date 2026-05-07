@@ -7,9 +7,9 @@ from pydantic import (
 )
 
 from OpenStudioLandscapes.RustDeskServer import (
-    dist,
     LOGGER,
     constants,
+    dist,
 )
 
 # class UseRelay(enum.StrEnum):

@@ -5,8 +5,8 @@ from dagster import (
 
 import OpenStudioLandscapes.RustDeskServer.assets
 from OpenStudioLandscapes.RustDeskServer import (
-    dist,
     LOGGER,
+    dist,
 )
 
 LOGGER.info(f"Loading {dist.name} assets...")
