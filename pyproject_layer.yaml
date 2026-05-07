@@ -2,19 +2,12 @@ project:
   description: RustDeskServer Feature for OpenStudioLandscapes
   name: OpenStudioLandscapes-RustDeskServer
   optional-dependencies:
-    optional-base:
-    - OpenStudioLandscapes @ git+https://github.com/michimussato/OpenStudioLandscapes.git
     dev:
     - OpenStudioLandscapes-RustDeskServer[lint]
     - OpenStudioLandscapes-RustDeskServer[sbom]
     - OpenStudioLandscapes-RustDeskServer[readme]
-    lint:
-    - OpenStudioLandscapes-RustDeskServer[optional-base]
-    readme:
-    - OpenStudioLandscapes-RustDeskServer[optional-base]
     sbom:
     - OpenStudioLandscapes-RustDeskServer[graphviz]
-    - OpenStudioLandscapes-RustDeskServer[optional-base]
   urls:
     Homepage: https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer
 tool:
