@@ -7,9 +7,6 @@ src/OpenStudioLandscapes/RustDeskServer/assets.py:332:0: C0116: Missing function
 ************* Module OpenStudioLandscapes.RustDeskServer.definitions
 src/OpenStudioLandscapes/RustDeskServer/definitions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/RustDeskServer/definitions.py:12:0: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
-************* Module OpenStudioLandscapes.RustDeskServer.constants
-src/OpenStudioLandscapes/RustDeskServer/constants.py:9:1: W0511: Todo (fixme)
-src/OpenStudioLandscapes/RustDeskServer/constants.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module OpenStudioLandscapes.RustDeskServer._definitions_with_upstream_specs
 src/OpenStudioLandscapes/RustDeskServer/_definitions_with_upstream_specs.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module OpenStudioLandscapes.RustDeskServer.__init__
@@ -17,6 +14,7 @@ src/OpenStudioLandscapes/RustDeskServer/__init__.py:15:5: W0511: TODO: Import di
 ************* Module OpenStudioLandscapes.RustDeskServer
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/RustDeskServer/__init__.py:1:0: C0103: Module name "RustDeskServer" doesn't conform to snake_case naming style (invalid-name)
+src/OpenStudioLandscapes/RustDeskServer/__init__.py:39:4: C0103: Constant name "fill" doesn't conform to UPPER_CASE naming style (invalid-name)
 ************* Module OpenStudioLandscapes.RustDeskServer.config.models
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/RustDeskServer/config/models.py:20:0: C0115: Missing class docstring (missing-class-docstring)
@@ -40,5 +38,5 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:153:8: C2801: Unnecessaril
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:173:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 
 ------------------------------------------------------------------
-Your code has been rated at 8.16/10 (previous run: 7.99/10, +0.17)
+Your code has been rated at 8.20/10 (previous run: 8.02/10, +0.17)
 
