@@ -8,8 +8,8 @@ from pydantic import (
 
 from OpenStudioLandscapes.RustDeskServer import (
     LOGGER,
-    constants,
     dist,
+    ASSET_HEADER,
 )
 
 # class UseRelay(enum.StrEnum):
@@ -20,9 +20,9 @@ from OpenStudioLandscapes.RustDeskServer import (
 class Config(FeatureBaseModel):
     feature_name: str = dist.name
 
-    group_name: str = constants.ASSET_HEADER["group_name"]
+    group_name: str = ASSET_HEADER["group_name"]
 
-    key_prefixes: List[str] = constants.ASSET_HEADER["key_prefix"]
+    key_prefixes: List[str] = ASSET_HEADER["key_prefix"]
 
     rustdeskserver_docker_image: str = Field(
         default="docker.io/rustdesk/rustdesk-server:latest",
