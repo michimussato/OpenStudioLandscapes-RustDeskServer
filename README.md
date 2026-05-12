@@ -83,138 +83,135 @@ The following settings are available in `OpenStudioLandscapes-RustDeskServer` an
 
 
 ```yaml
-properties:
-  compose_scope:
-    default: default
-    examples:
-    - default
-    - license_server
-    - worker
-    title: Compose Scope
+compose_scope:
+  default: default
+  examples:
+  - default
+  - license_server
+  - worker
+  title: Compose Scope
+  type: string
+docker_compose:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml'
+  description: The path to the `docker-compose.yml` file.
+  format: path
+  title: Docker Compose
+  type: string
+enabled:
+  default: true
+  description: Whether the Feature is enabled or not.
+  title: Enabled
+  type: boolean
+env:
+  additionalProperties: true
+  title: Env
+  type: object
+feature_name:
+  default: OpenStudioLandscapes-RustDeskServer
+  title: Feature Name
+  type: string
+group_name:
+  default: OpenStudioLandscapes_RustDeskServer
+  title: Group Name
+  type: string
+key_prefixes:
+  default:
+  - OpenStudioLandscapes_RustDeskServer
+  items:
     type: string
-  docker_compose:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml'
-    description: The path to the `docker-compose.yml` file.
-    format: path
-    title: Docker Compose
+  title: Key Prefixes
+  type: array
+local_bind_volumes:
+  description: Here you can define Feature specific, arbitrary, absolute bind volume
+    mappings.
+  items:
     type: string
-  enabled:
-    default: true
-    description: Whether the Feature is enabled or not.
-    title: Enabled
-    type: boolean
-  env:
-    additionalProperties: true
-    title: Env
-    type: object
-  feature_name:
-    default: OpenStudioLandscapes-RustDeskServer
-    title: Feature Name
+  title: Local Bind Volumes
+  type: array
+local_environment_variables:
+  additionalProperties:
     type: string
-  group_name:
-    default: OpenStudioLandscapes_RustDeskServer
-    title: Group Name
-    type: string
-  key_prefixes:
-    default:
-    - OpenStudioLandscapes_RustDeskServer
-    items:
-      type: string
-    title: Key Prefixes
-    type: array
-  local_bind_volumes:
-    description: Here you can define Feature specific, arbitrary, absolute bind volume
-      mappings.
-    items:
-      type: string
-    title: Local Bind Volumes
-    type: array
-  local_environment_variables:
-    additionalProperties:
-      type: string
-    description: Here you can define Feature specific, arbitrary environment variables.
-    title: Local Environment Variables
-    type: object
-  rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER:
-    default: 21117
-    title: Rustdeskserver Hbbr Relay Services Port Container
-    type: integer
-  rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST:
-    default: 21117
-    title: Rustdeskserver Hbbr Relay Services Port Host
-    type: integer
-  rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER:
-    default: 21119
-    description: Can be disabled if web clients are not needed.
-    title: Rustdeskserver Hbbr Web Clients Support Port Container
-    type: integer
-  rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST:
-    default: 21119
-    description: Can be disabled if web clients are not needed.
-    title: Rustdeskserver Hbbr Web Clients Support Port Host
-    type: integer
-  rustdeskserver_HBBS_ALWAYS_USE_RELAY:
-    default: Y
-    examples:
-    - Y
-    - N
-    title: Rustdeskserver Hbbs Always Use Relay
-    type: string
-  rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER:
-    default: 21116
-    title: Rustdeskserver Hbbs Id Registration Heartbeat Tcp Port Container
-    type: integer
-  rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST:
-    default: 21116
-    title: Rustdeskserver Hbbs Id Registration Heartbeat Tcp Port Host
-    type: integer
-  rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER:
-    default: 21116
-    title: Rustdeskserver Hbbs Id Registration Heartbeat Udp Port Container
-    type: integer
-  rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST:
-    default: 21116
-    title: Rustdeskserver Hbbs Id Registration Heartbeat Udp Port Host
-    type: integer
-  rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER:
-    default: 21115
-    title: Rustdeskserver Hbbs Nat Type Test Port Container
-    type: integer
-  rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST:
-    default: 21115
-    title: Rustdeskserver Hbbs Nat Type Test Port Host
-    type: integer
-  rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER:
-    default: 21118
-    description: Can be disabled if web clients are not needed.
-    title: Rustdeskserver Hbbs Web Clients Support Port Container
-    type: integer
-  rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST:
-    default: 21118
-    description: Can be disabled if web clients are not needed.
-    title: Rustdeskserver Hbbs Web Clients Support Port Host
-    type: integer
-  rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER:
-    default: 21114
-    description: Only in Pro version.
-    title: Rustdeskserver Hbbs Web Console Port Container
-    type: integer
-  rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST:
-    default: 21114
-    description: Only in Pro version.
-    title: Rustdeskserver Hbbs Web Console Port Host
-    type: integer
-  rustdeskserver_data_store:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/data'
-    format: path
-    title: Rustdeskserver Data Store
-    type: string
-  rustdeskserver_docker_image:
-    default: docker.io/rustdesk/rustdesk-server:latest
-    title: Rustdeskserver Docker Image
-    type: string
-title: Config
-type: object
+  description: Here you can define Feature specific, arbitrary environment variables.
+  title: Local Environment Variables
+  type: object
+rustdeskserver_HBBR_RELAY_SERVICES_PORT_CONTAINER:
+  default: 21117
+  title: Rustdeskserver Hbbr Relay Services Port Container
+  type: integer
+rustdeskserver_HBBR_RELAY_SERVICES_PORT_HOST:
+  default: 21117
+  title: Rustdeskserver Hbbr Relay Services Port Host
+  type: integer
+rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_CONTAINER:
+  default: 21119
+  description: Can be disabled if web clients are not needed.
+  title: Rustdeskserver Hbbr Web Clients Support Port Container
+  type: integer
+rustdeskserver_HBBR_WEB_CLIENTS_SUPPORT_PORT_HOST:
+  default: 21119
+  description: Can be disabled if web clients are not needed.
+  title: Rustdeskserver Hbbr Web Clients Support Port Host
+  type: integer
+rustdeskserver_HBBS_ALWAYS_USE_RELAY:
+  default: Y
+  examples:
+  - Y
+  - N
+  title: Rustdeskserver Hbbs Always Use Relay
+  type: string
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_CONTAINER:
+  default: 21116
+  title: Rustdeskserver Hbbs Id Registration Heartbeat Tcp Port Container
+  type: integer
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_TCP_PORT_HOST:
+  default: 21116
+  title: Rustdeskserver Hbbs Id Registration Heartbeat Tcp Port Host
+  type: integer
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_CONTAINER:
+  default: 21116
+  title: Rustdeskserver Hbbs Id Registration Heartbeat Udp Port Container
+  type: integer
+rustdeskserver_HBBS_ID_REGISTRATION_HEARTBEAT_UDP_PORT_HOST:
+  default: 21116
+  title: Rustdeskserver Hbbs Id Registration Heartbeat Udp Port Host
+  type: integer
+rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_CONTAINER:
+  default: 21115
+  title: Rustdeskserver Hbbs Nat Type Test Port Container
+  type: integer
+rustdeskserver_HBBS_NAT_TYPE_TEST_PORT_HOST:
+  default: 21115
+  title: Rustdeskserver Hbbs Nat Type Test Port Host
+  type: integer
+rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_CONTAINER:
+  default: 21118
+  description: Can be disabled if web clients are not needed.
+  title: Rustdeskserver Hbbs Web Clients Support Port Container
+  type: integer
+rustdeskserver_HBBS_WEB_CLIENTS_SUPPORT_PORT_HOST:
+  default: 21118
+  description: Can be disabled if web clients are not needed.
+  title: Rustdeskserver Hbbs Web Clients Support Port Host
+  type: integer
+rustdeskserver_HBBS_WEB_CONSOLE_PORT_CONTAINER:
+  default: 21114
+  description: Only in Pro version.
+  title: Rustdeskserver Hbbs Web Console Port Container
+  type: integer
+rustdeskserver_HBBS_WEB_CONSOLE_PORT_HOST:
+  default: 21114
+  description: Only in Pro version.
+  title: Rustdeskserver Hbbs Web Console Port Host
+  type: integer
+rustdeskserver_data_store:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/data'
+  format: path
+  title: Rustdeskserver Data Store
+  type: string
+rustdeskserver_docker_image:
+  default: docker.io/rustdesk/rustdesk-server:latest
+  title: Rustdeskserver Docker Image
+  type: string
 
 ```
 
@@ -331,4 +328,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-05-09 11:24:46 UTC**
+Last changed: **2026-05-12 09:58:31 UTC**
