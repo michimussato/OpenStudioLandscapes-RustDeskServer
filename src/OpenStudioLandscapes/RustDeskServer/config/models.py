@@ -1,5 +1,5 @@
 import pathlib
-from typing import List, Dict
+from typing import Dict, List
 
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
 from pydantic import (
