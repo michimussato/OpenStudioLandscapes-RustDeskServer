@@ -38,5 +38,5 @@ src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:153:8: C2801: Unnecessaril
 src/OpenStudioLandscapes/RustDeskServer/doc/readme.py:173:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 
 ------------------------------------------------------------------
-Your code has been rated at 8.22/10 (previous run: 8.05/10, +0.17)
+Your code has been rated at 8.22/10 (previous run: 7.93/10, +0.29)
 
