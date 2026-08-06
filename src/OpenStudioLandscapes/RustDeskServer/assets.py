@@ -24,7 +24,7 @@ from OpenStudioLandscapes.engine.common_assets import (
     group_in,
     group_out,
 )
-from OpenStudioLandscapes.engine.config.models import ConfigEngine
+from OpenStudioLandscapes.engine.env.configurable_resources.config_engine import ConfigEngineConfigurableResource
 from OpenStudioLandscapes.engine.constants import (
     ASSET_HEADER_BASE,
     ConfigParent,
@@ -150,14 +150,13 @@ def compose_networks(
 )
 def compose_rustdeskserver(
     context: AssetExecutionContext,
+    config_ConfigEngineConfigurableResource: ConfigEngineConfigurableResource,
     CONFIG: config.models.Config,  # pylint: disable=redefined-outer-name
     compose_networks: Dict,  # pylint: disable=redefined-outer-name
 ) -> Generator[Output[Dict] | AssetMaterialization, None, None]:
     """ """
 
     env: Dict = CONFIG.env
-
-    config_engine: ConfigEngine = CONFIG.config_engine
 
     network_dict = {}
     ports_dict_hbbs = {}
@@ -215,7 +214,7 @@ def compose_rustdeskserver(
         "volumes": list(
             {
                 *_volume_relative,
-                *config_engine.global_bind_volumes,
+                *config_ConfigEngineConfigurableResource.global_bind_volumes,
                 *CONFIG.local_bind_volumes,
             }
         ),
@@ -226,7 +225,7 @@ def compose_rustdeskserver(
         context=context,
         service_name=service_name_hbbs,
         landscape_id=env.get("LANDSCAPE", "default"),
-        domain_lan=config_engine.openstudiolandscapes__domain_lan,
+        domain_lan=config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
     )
     # container_name_hbbs = "--".join(
     #     [service_name_hbbs, env.get("LANDSCAPE", "default")]
@@ -243,7 +242,7 @@ def compose_rustdeskserver(
         context=context,
         service_name=service_name_hbbr,
         landscape_id=env.get("LANDSCAPE", "default"),
-        domain_lan=config_engine.openstudiolandscapes__domain_lan,
+        domain_lan=config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
     )
     # container_name_hbbr = "--".join(
     #     [service_name_hbbr, env.get("LANDSCAPE", "default")]
@@ -265,7 +264,7 @@ def compose_rustdeskserver(
             service_name_hbbs: {
                 "container_name": container_name_hbbs,
                 "hostname": host_name_hbbs,
-                "domainname": config_engine.openstudiolandscapes__domain_lan,
+                "domainname": config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": DockerComposePolicies.RESTART_POLICY.UNLESS_STOPPED.value,
                 "image": CONFIG.rustdeskserver_docker_image,
@@ -273,9 +272,9 @@ def compose_rustdeskserver(
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbs),
                 "environment": {
-                    "TZ": config_engine.tz,
+                    "TZ": config_ConfigEngineConfigurableResource.tz,
                     "ALWAYS_USE_RELAY": CONFIG.rustdeskserver_HBBS_ALWAYS_USE_RELAY,
-                    **config_engine.global_environment_variables,
+                    **config_ConfigEngineConfigurableResource.global_environment_variables,
                     **CONFIG.local_environment_variables,
                 },
                 # "healthcheck": {
@@ -289,7 +288,7 @@ def compose_rustdeskserver(
             service_name_hbbr: {
                 "container_name": container_name_hbbr,
                 "hostname": host_name_hbbr,
-                "domainname": config_engine.openstudiolandscapes__domain_lan,
+                "domainname": config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
                 # "mac_address": ":".join(re.findall(r"..", env["HOST_ID"])),
                 "restart": DockerComposePolicies.RESTART_POLICY.UNLESS_STOPPED.value,
                 "image": CONFIG.rustdeskserver_docker_image,
@@ -297,8 +296,8 @@ def compose_rustdeskserver(
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict_hbbr),
                 "environment": {
-                    "TZ": config_engine.tz,
-                    **config_engine.global_environment_variables,
+                    "TZ": config_ConfigEngineConfigurableResource.tz,
+                    **config_ConfigEngineConfigurableResource.global_environment_variables,
                     **CONFIG.local_environment_variables,
                 },
                 # "healthcheck": {
