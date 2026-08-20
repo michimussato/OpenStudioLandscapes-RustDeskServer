@@ -4,7 +4,7 @@ from dagster import (
 )
 
 import OpenStudioLandscapes.RustDeskServer.assets
-from OpenStudioLandscapes.RustDeskServer import (
+from OpenStudioLandscapes.RustDeskServer.constants import (
     LOGGER,
     dist,
 )
