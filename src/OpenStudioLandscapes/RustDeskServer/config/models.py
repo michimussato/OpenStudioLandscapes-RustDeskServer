@@ -6,7 +6,7 @@ from pydantic import (
     Field,
 )
 
-from OpenStudioLandscapes.RustDeskServer import (
+from OpenStudioLandscapes.RustDeskServer.constants import (
     ASSET_HEADER,
     LOGGER,
     dist,
